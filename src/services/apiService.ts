@@ -5,10 +5,10 @@ import axios, {
 } from 'axios';
 import {API_URL, API_KEY} from '@env';
 
-// Create an Axios instance with default configuration
+
 const axiosInstance = axios.create({
   baseURL: API_URL,
-  timeout: 10000, // 10 seconds timeout
+  timeout: 5000, // 5 seconds timeout
   headers: {
     'Content-Type': 'application/json',
   },
