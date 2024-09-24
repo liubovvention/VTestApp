@@ -1,5 +1,4 @@
 import axios, {
-  AxiosRequestConfig,
   AxiosResponse,
   InternalAxiosRequestConfig,
 } from 'axios';
