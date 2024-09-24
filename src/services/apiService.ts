@@ -20,7 +20,6 @@ axiosInstance.interceptors.request.use(
         ...config.params,
         appid: API_KEY,
       };
-      console.log("DEBUG params", config.params)
     }
 
     return config;
@@ -39,7 +38,6 @@ axiosInstance.interceptors.response.use(
 
 class ApiService {
   public static async get<T>(url: string, params?: any): Promise<T> {
-    console.log('DEBUG get params', params);
     try {
       const response: AxiosResponse<T> = await axiosInstance.get(url, {params});
       return response.data;

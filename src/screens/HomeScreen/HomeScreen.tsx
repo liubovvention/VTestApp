@@ -1,14 +1,48 @@
 import {useEffect, useState} from 'react';
-import {SafeAreaView, StatusBar, Text, useColorScheme, View} from 'react-native';
+import {
+  FlatList,
+  SafeAreaView,
+  StatusBar,
+  Text,
+  useColorScheme,
+  View,
+} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import ApiService from '../../services/apiService';
+import WeatherService from '../../services/weatherServices';
 
 import styles from './HomeScreenStyles';
-import { Section } from '../../components';
 
+import {CityWeather} from 'types/weather';
+import {CityItem} from './components';
+
+export const CitiesList = [
+  'Alicante',
+  'Berlin',
+  'Copenhagen',
+  'Dresden',
+  'Edinburgh',
+  'Florence',
+  'Geneva',
+  'Helsinki',
+  'Istanbul',
+  'Jena',
+  'Kyiv',
+  'Lisbon',
+  'Madrid',
+  'Nicosia',
+  'Oslo',
+  'Paris',
+  'Rome',
+  'Sofia',
+  'Tallinn',
+  'Utrecht',
+  'Vilnius',
+  'Warsaw',
+  'Zagreb',
+];
 
 export default function HomeScreen() {
-  const [data, setData] = useState<any>(null);
+  const [data, setData] = useState<CityWeather[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -18,12 +52,26 @@ export default function HomeScreen() {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
-  const fetchWeatherData = async () => {
-    const url = '/weather';
+  // const fetchWeatherData = async () => {
+  //   try {
+  //     const result = await WeatherService.getCityWeather('Vilnius');
+  //     if (result) setData(result);
+  //   } catch (err) {
+  //     if (err instanceof Error) {
+  //       setError(err.message);
+  //     } else {
+  //       setError('An unknown error occurred');
+  //     }
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
+  const fetchWeatherDataList = async () => {
     try {
-      const result = await ApiService.get(url, {q: 'Vilnius'});
-      setData(result);
+      const result = await WeatherService.getCitiesWeather(CitiesList);
+      console.log('DEBUG home res list', result);
+      if (result) setData(result);
     } catch (err) {
       if (err instanceof Error) {
         setError(err.message);
@@ -36,7 +84,7 @@ export default function HomeScreen() {
   };
 
   useEffect(() => {
-    fetchWeatherData();
+    fetchWeatherDataList();
   }, []);
 
   return (
@@ -52,11 +100,15 @@ export default function HomeScreen() {
             backgroundColor: backgroundStyle.backgroundColor,
           },
         ]}>
-        <Section title="Weather Data">
-          {loading && <Text>Loading...</Text>}
-          {error && <Text>Error: {error}</Text>}
-          {data && <Text>{JSON.stringify(data.coord, null, 2)}</Text>}
-        </Section>
+        {loading && <Text>Loading...</Text>}
+        {error && <Text>Error: {error}</Text>}
+        {data && (
+          <FlatList
+            data={data}
+            renderItem={({ item }) => <CityItem item={item} />}
+            keyExtractor={item => item.city} // Use a unique key for each item
+          />
+        )}
       </View>
     </SafeAreaView>
   );
