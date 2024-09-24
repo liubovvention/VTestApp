@@ -62,7 +62,7 @@ class ApiService {
     let message = 'Something went wrong!';
 
     if (error.response) {
-      console.log('DEBUG Error response:', error.response); 
+      console.error('DEBUG Error response:', error.response); 
       message = error.response.data.message || message; 
     } else if (error instanceof Error) {
       message = error.message; 
