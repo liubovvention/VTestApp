@@ -4,8 +4,8 @@ import {
   Text,
   View,
 } from 'react-native';
-import WeatherService from '../../services/weatherServices';
-import {CityItem} from '../../components';
+import WeatherService from 'src/services/weatherServices';
+import {CityItem} from 'src/components';
 import {CityWeather} from 'types/weather';
 import citiesList from './data/citiesList.json';
 import styles from './HomeScreenStyles';

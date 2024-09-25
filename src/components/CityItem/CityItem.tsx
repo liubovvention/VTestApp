@@ -2,7 +2,7 @@ import {Image, Pressable, Text, View} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {kelvinToFahrenheit} from '../../utils/tempUtils';
+import {kelvinToFahrenheit} from 'src/utils/tempUtils';
 import {StackParamList} from 'types/navigation';
 import {CityWeather} from 'types/weather';
 import styles from './CityItemStyles';
