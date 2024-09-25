@@ -45,7 +45,7 @@ export default function HomeScreen() {
       {data && (
         <FlatList
           data={data}
-          renderItem={({item}) => <CityItem item={item} isPressable={true} />}
+          renderItem={({item}) => <CityItem item={item} />}
           keyExtractor={item => item.city}
         />
       )}

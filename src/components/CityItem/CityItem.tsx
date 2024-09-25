@@ -9,10 +9,10 @@ import styles from './CityItemStyles';
 
 interface CityItemProps {
   item: CityWeather;
-  isPressable: boolean;
+  isPressable?: boolean;
 }
 
-const CityItem: React.FC<CityItemProps> = ({item, isPressable}) => {
+const CityItem: React.FC<CityItemProps> = ({item, isPressable = true}) => {
   const navigation = useNavigation<NativeStackNavigationProp<StackParamList>>();
   const iconUrl = `https://openweathermap.org/img/wn/${item.icon}.png`;
   return (
