@@ -3,6 +3,7 @@ import {Dimensions, StyleSheet} from 'react-native';
 const {width, height} = Dimensions.get('screen');
 
 const styles = StyleSheet.create({
+  wrapper: {flex: 1},
   container: {padding: 20},
   itemRow: {
     flexDirection: 'row',
