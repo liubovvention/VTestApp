@@ -11,34 +11,8 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import WeatherService from '../../services/weatherServices';
 import {CityItem} from '../../components';
 import {CityWeather} from 'types/weather';
+import citiesList from './data/citiesList.json';
 import styles from './HomeScreenStyles';
-
-//TODO: move to data
-export const CitiesList = [
-  'Alicante',
-  'Berlin',
-  'Copenhagen',
-  'Dresden',
-  'Edinburgh',
-  'Florence',
-  'Geneva',
-  'Helsinki',
-  'Istanbul',
-  'Jena',
-  'Kyiv',
-  'Lisbon',
-  'Madrid',
-  'Nicosia',
-  'Oslo',
-  'Paris',
-  'Rome',
-  'Sofia',
-  'Tallinn',
-  'Utrecht',
-  'Vilnius',
-  'Warsaw',
-  'Zagreb',
-];
 
 export default function HomeScreen() {
   const [data, setData] = useState<CityWeather[] | null>(null);
@@ -53,7 +27,7 @@ export default function HomeScreen() {
 
   const fetchWeatherDataList = async () => {
     try {
-      const result = await WeatherService.getCitiesWeather(CitiesList);
+      const result = await WeatherService.getCitiesWeather(citiesList);
       console.log('DEBUG home res list', result);
       if (result) setData(result);
     } catch (err) {
