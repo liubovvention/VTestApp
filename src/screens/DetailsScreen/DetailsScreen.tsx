@@ -1,5 +1,5 @@
-import { RouteProp } from '@react-navigation/native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import {RouteProp} from '@react-navigation/native';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {
   SafeAreaView,
   StatusBar,
@@ -8,13 +8,14 @@ import {
   View,
 } from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import { StackParamList } from 'types/navigation';
-import { CityItem } from '../../components';
+import {StackParamList} from 'types/navigation';
+import {CityItem} from '../../components';
+import styles from './DetailsScreenStyles';
 
 type DetailsProps = NativeStackScreenProps<StackParamList, 'Details'>;
 
-const DetailsScreen: React.FC<DetailsProps> = ({ route }) => {
-  const { city, descr, icon, temp } = route.params;
+const DetailsScreen: React.FC<DetailsProps> = ({route}) => {
+  const {humidity, wspeed, pressure, cloud} = route.params;
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -28,8 +29,26 @@ const DetailsScreen: React.FC<DetailsProps> = ({ route }) => {
         backgroundColor={backgroundStyle.backgroundColor}
       />
       <CityItem item={route.params} isPressable={false} />
+      <View style={styles.container}>
+        <View style={styles.itemRow}>
+          <Text style={styles.label}>Humidity:</Text>
+          <Text style={styles.value}>{humidity}%</Text>
+        </View>
+        <View style={styles.itemRow}>
+          <Text style={styles.label}>Pressure:</Text>
+          <Text style={styles.value}>{pressure} hPa</Text>
+        </View>
+        <View style={styles.itemRow}>
+          <Text style={styles.label}>Wind Speed:</Text>
+          <Text style={styles.value}>{wspeed} mph</Text>
+        </View>
+        <View style={styles.itemRow}>
+          <Text style={styles.label}>Cloud Cover:</Text>
+          <Text style={styles.value}>{cloud}%</Text>
+        </View>
+      </View>
     </SafeAreaView>
   );
-}
+};
 
 export default DetailsScreen;

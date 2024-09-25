@@ -3,6 +3,10 @@ export interface CityWeather {
   icon: string;
   descr: string;
   temp: number;
+  humidity: number;
+  pressure: number;
+  wspeed: number;
+  cloud: number;
 }
 
 export interface WeatherResponse {

@@ -14,6 +14,10 @@ class WeatherServices {
         icon: result.weather[0].icon,
         descr: result.weather[0].main,
         temp: result.main.temp,
+        humidity: result.main.humidity,
+        pressure: result.main.pressure,
+        wspeed: result.wind.speed,
+        cloud: result.clouds.all
       };
 
       return cWeather;

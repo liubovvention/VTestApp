@@ -51,21 +51,6 @@ export default function HomeScreen() {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
-  // const fetchWeatherData = async () => {
-  //   try {
-  //     const result = await WeatherService.getCityWeather('Vilnius');
-  //     if (result) setData(result);
-  //   } catch (err) {
-  //     if (err instanceof Error) {
-  //       setError(err.message);
-  //     } else {
-  //       setError('An unknown error occurred');
-  //     }
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
   const fetchWeatherDataList = async () => {
     try {
       const result = await WeatherService.getCitiesWeather(CitiesList);
@@ -105,7 +90,7 @@ export default function HomeScreen() {
           <FlatList
             data={data}
             renderItem={({ item }) => <CityItem item={item} isPressable={true} />}
-            keyExtractor={item => item.city} // Use a unique key for each item
+            keyExtractor={item => item.city} 
           />
         )}
       </View>
