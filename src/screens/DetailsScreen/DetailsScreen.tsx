@@ -1,4 +1,5 @@
 import { RouteProp } from '@react-navigation/native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import {
   SafeAreaView,
   StatusBar,
@@ -8,10 +9,9 @@ import {
 } from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import { StackParamList } from 'types/navigation';
+import { CityItem } from '../../components';
 
-type DetailsProps = {
-  route: RouteProp<StackParamList, 'Details'>;
-};
+type DetailsProps = NativeStackScreenProps<StackParamList, 'Details'>;
 
 const DetailsScreen: React.FC<DetailsProps> = ({ route }) => {
   const { city, descr, icon, temp } = route.params;
@@ -27,9 +27,7 @@ const DetailsScreen: React.FC<DetailsProps> = ({ route }) => {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <View>
-        <Text>New screen: {city}</Text>
-      </View>
+      <CityItem item={route.params} isPressable={false} />
     </SafeAreaView>
   );
 }

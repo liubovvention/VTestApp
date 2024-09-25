@@ -9,12 +9,11 @@ import {
 } from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import WeatherService from '../../services/weatherServices';
-
+import {CityItem} from '../../components';
+import {CityWeather} from 'types/weather';
 import styles from './HomeScreenStyles';
 
-import {CityWeather} from 'types/weather';
-import {CityItem} from './components';
-
+//TODO: move to data
 export const CitiesList = [
   'Alicante',
   'Berlin',
@@ -105,7 +104,7 @@ export default function HomeScreen() {
         {data && (
           <FlatList
             data={data}
-            renderItem={({ item }) => <CityItem item={item} />}
+            renderItem={({ item }) => <CityItem item={item} isPressable={true} />}
             keyExtractor={item => item.city} // Use a unique key for each item
           />
         )}
