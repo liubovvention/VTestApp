@@ -2,17 +2,17 @@ import {Image, Pressable, Text, View} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {kelvinToFahrenheit} from '../../utils/tempUtils';
+import {kelvinToFahrenheit} from 'utils/tempUtils';
 import {StackParamList} from 'types/navigation';
 import {CityWeather} from 'types/weather';
 import styles from './CityItemStyles';
 
 interface CityItemProps {
   item: CityWeather;
-  isPressable: boolean;
+  isPressable?: boolean;
 }
 
-const CityItem: React.FC<CityItemProps> = ({item, isPressable}) => {
+const CityItem: React.FC<CityItemProps> = ({item, isPressable = true}) => {
   const navigation = useNavigation<NativeStackNavigationProp<StackParamList>>();
   const iconUrl = `https://openweathermap.org/img/wn/${item.icon}.png`;
   return (

@@ -7,7 +7,7 @@ import {API_URL, API_KEY} from '@env';
 
 const axiosInstance = axios.create({
   baseURL: API_URL,
-  timeout: 5000, // 5 seconds timeout
+  timeout: 10000, // 10 seconds timeout
   headers: {
     'Content-Type': 'application/json',
   },

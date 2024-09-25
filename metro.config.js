@@ -9,8 +9,13 @@ const path = require('path');
  */
 const config = {
   resolver: {
-    extraNodeModules: {
-      'src': path.resolve(__dirname, './src'),
+      extraNodeModules: {
+        'src': path.resolve(__dirname, './src'),
+        'components': path.resolve(__dirname, './src/components'),
+        'hooks': path.resolve(__dirname, './src/hooks'),
+        'screens': path.resolve(__dirname, './src/screens'),
+        'services': path.resolve(__dirname, './src/services'),
+        'utils': path.resolve(__dirname, './src/utils'),
     },
   },
 };
