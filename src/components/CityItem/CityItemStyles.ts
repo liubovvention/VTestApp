@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     descrContainer: {
       flexDirection: 'column',
       width: width / 2.5,
-      justifyContent: 'center', // Added for vertical centering
+      justifyContent: 'center',
     },
     cityTitle: {
       fontSize: 18,
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       padding: 8,
       width: 100,
-      marginRight: 10, // Added margin between temperature and button
+      marginRight: 10, 
     },
     temp: {
       fontSize: 16,
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
       height: 50,
     },
     chevronIcon: {
-      color: 'gray', // Ensures the icon is visible
+      color: 'gray',
     },
   });
 
