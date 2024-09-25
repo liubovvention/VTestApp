@@ -1,3 +1,4 @@
+import { RouteProp } from '@react-navigation/native';
 import {
   SafeAreaView,
   StatusBar,
@@ -6,8 +7,14 @@ import {
   View,
 } from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+import { StackParamList } from 'types/navigation';
 
-export default function DetailsScreen() {
+type DetailsProps = {
+  route: RouteProp<StackParamList, 'Details'>;
+};
+
+const DetailsScreen: React.FC<DetailsProps> = ({ route }) => {
+  const { city, descr, icon, temp } = route.params;
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -21,8 +28,10 @@ export default function DetailsScreen() {
         backgroundColor={backgroundStyle.backgroundColor}
       />
       <View>
-        <Text>New screen</Text>
+        <Text>New screen: {city}</Text>
       </View>
     </SafeAreaView>
   );
 }
+
+export default DetailsScreen;

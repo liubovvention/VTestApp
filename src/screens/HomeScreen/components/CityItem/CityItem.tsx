@@ -27,7 +27,7 @@ const CityItem: React.FC<CityItemProps> = ({item}) => {
       <View style={styles.actionContainer}>
         <Pressable
           style={styles.button}
-          onPress={() => navigation.navigate('Details')}>
+          onPress={() => navigation.navigate('Details', item)}>
           <Icon name="chevron-right" size={20} style={styles.chevronIcon} />
         </Pressable>
       </View>
