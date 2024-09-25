@@ -10,7 +10,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {SafeAreaView, StatusBar, StyleSheet, useColorScheme} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import {HomeScreen, DetailsScreen} from 'src/screens';
+import {HomeScreen, DetailsScreen} from 'screens';
 import {StackParamList} from 'types/navigation';
 
 const Stack = createNativeStackNavigator<StackParamList>();

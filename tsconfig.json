@@ -3,7 +3,12 @@
   "compilerOptions": {
     "baseUrl": "./", 
     "paths": {
-      "src/*": ["src/*"] 
+      "src/*": ["src/*"],
+      "components": ["src/components"],
+      "hooks/*": ["src/hooks/*"],
+      "screens": ["src/screens"],
+      "services/*": ["src/services/*"],
+      "utils/*": ["src/utils/*"],
     }
   }
 }
