@@ -12,7 +12,7 @@ const CityItem: React.FC<CityItemProps> = ({item}) => {
   const iconUrl = `https://openweathermap.org/img/wn/${item.icon}.png`;
   return (
     <View style={styles.itemContainer}>
-      <Image source={{uri: iconUrl}} style={styles.weatherIcon} onError={() => console.log("WIcon error")} />
+      <Image source={{uri: iconUrl}} style={styles.weatherIcon} />
       <View style={styles.descrContainer}>
         <Text style={styles.cityTitle}>{item.city}</Text>
         <Text style={styles.weatherDescr}>{item.descr}</Text>
