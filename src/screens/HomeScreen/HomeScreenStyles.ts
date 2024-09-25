@@ -5,7 +5,7 @@ const {width, height} = Dimensions.get('screen');
 const styles = StyleSheet.create({
     viewContainer: {
       width: width,
-      height: height,
+      height: height - 150,
       justifyContent: 'center',
       alignItems: 'center',
     },
