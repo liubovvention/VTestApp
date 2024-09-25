@@ -2,7 +2,12 @@ This is a new [**React Native**](https://reactnative.dev) project, bootstrapped 
 
 # Getting Started
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+>**Note**: Make sure you have created .env file
+
+```bash
+API_URL=https://api.openweathermap.org/data/2.5
+API_KEY=ef7547eb05ea5d4514dc2aa20c325dbb
+```
 
 ## Step 1: Start the Metro Server
 
