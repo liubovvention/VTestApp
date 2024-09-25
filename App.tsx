@@ -8,11 +8,10 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-
-import {HomeScreen, DetailsScreen} from './src/screens';
-import {StackParamList} from 'types/navigation';
 import {SafeAreaView, StatusBar, StyleSheet, useColorScheme} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {HomeScreen, DetailsScreen} from 'src/screens';
+import {StackParamList} from 'types/navigation';
 
 const Stack = createNativeStackNavigator<StackParamList>();
 
@@ -40,8 +39,6 @@ const getStyles = (isDarkMode: boolean) =>
     safeArea: {
       backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
       flex: 1,
-      paddingVertical: 150,
-      borderWidth: 2
     },
   });
 
