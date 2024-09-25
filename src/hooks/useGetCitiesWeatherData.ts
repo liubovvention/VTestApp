@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { CityWeather, WeatherResponse } from 'types/weather';
 import ApiService from 'services/apiService';
+import { CityWeather, WeatherResponse } from 'types/weather';
 
 
 export const useGetCitiesWeatherData = (cities: string[]) => {
