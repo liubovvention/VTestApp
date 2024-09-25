@@ -1,13 +1,5 @@
-import {RouteProp} from '@react-navigation/native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {
-  SafeAreaView,
-  StatusBar,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {Text, View} from 'react-native';
 import {StackParamList} from 'types/navigation';
 import {CityItem} from '../../components';
 import styles from './DetailsScreenStyles';

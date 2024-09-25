@@ -1,13 +1,9 @@
-import {useEffect, useState} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import {
   FlatList,
-  SafeAreaView,
-  StatusBar,
   Text,
-  useColorScheme,
   View,
 } from 'react-native';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
 import WeatherService from '../../services/weatherServices';
 import {CityItem} from '../../components';
 import {CityWeather} from 'types/weather';
@@ -19,7 +15,7 @@ export default function HomeScreen() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
-  const fetchWeatherDataList = async () => {
+  const fetchWeatherDataList = useCallback(async () => {
     try {
       const result = await WeatherService.getCitiesWeather(citiesList);
       if (result) setData(result);
@@ -32,11 +28,11 @@ export default function HomeScreen() {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     fetchWeatherDataList();
-  }, []);
+  }, [fetchWeatherDataList]);
 
   return (
     <View style={styles.viewContainer}>
