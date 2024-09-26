@@ -23,6 +23,10 @@ const TabNavigation = () => {
         tabBarInactiveBackgroundColor: 'gray',
         tabBarActiveTintColor: 'white',
         tabBarInactiveTintColor: 'white',
+        tabBarLabelStyle: {
+          fontSize: 16,  
+          fontWeight: 'bold',
+        },
         headerShown: true,
       })}>
       <Tab.Screen name="Weather" component={HomeScreen} />
