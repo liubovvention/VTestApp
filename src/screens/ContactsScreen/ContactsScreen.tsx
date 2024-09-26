@@ -1,5 +1,5 @@
 import {useCallback} from 'react';
-import {Linking, Pressable, Text, View} from 'react-native';
+import {Linking, Text, View} from 'react-native';
 import { StyledButton } from 'components';
 import { useThemedStyles } from 'styles/commonStyles';
 import styles from './ContactsScreenStyles';
