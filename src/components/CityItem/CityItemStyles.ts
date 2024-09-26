@@ -2,7 +2,6 @@ import {StyleSheet} from 'react-native';
 import {width} from 'styles/commonStyles';
 import { blueColors, grayColors } from 'styles/themeColors';
 
-
 const styles = StyleSheet.create({
     itemContainer: {
       width: width,
