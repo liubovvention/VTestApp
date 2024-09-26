@@ -9,6 +9,15 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
     },
+    title: {
+      fontSize: 24,
+      fontWeight: 'bold',
+      marginBottom: 20,
+    },
+    info: {
+      fontSize: 18,
+      marginVertical: 5,
+    },
   });
 
   export default styles;
