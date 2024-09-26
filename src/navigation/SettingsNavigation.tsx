@@ -12,7 +12,7 @@ const Drawer = createDrawerNavigator();
 const SettingsNavigation = () => {
   return (
     <Drawer.Navigator initialRouteName="Settings">
-      <Drawer.Screen name="Settings" component={SettingsScreen} />
+      <Drawer.Screen name="All Settings" component={SettingsScreen} />
       <Drawer.Screen name="App Info" component={InfoScreen} />
       <Drawer.Screen name="Contacts" component={ContactsScreen} />
       <Drawer.Screen name="Log Out" component={LogoutScreen} />
