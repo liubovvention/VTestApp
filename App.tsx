@@ -8,28 +8,35 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {SafeAreaView, StatusBar, StyleSheet, useColorScheme} from 'react-native';
+import {
+  SafeAreaView,
+  StatusBar,
+  StyleSheet,
+  useColorScheme,
+} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import {HomeScreen, DetailsScreen} from 'screens';
+import AppNavigation from 'navigation/AppNavigation';
 import {StackParamList} from 'types/navigation';
 
-const Stack = createNativeStackNavigator<StackParamList>();
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
   const styles = getStyles(isDarkMode);
+
+  const getInitialRoute = (): keyof StackParamList => {
+    // if (isLoggedIn) return 'Weather';
+    // if (isFirstTime) return 'Login';
+
+    return 'Weather'; 
+  };
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={isDarkMode ? Colors.darker : Colors.lighter}
       />
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="Weather" component={HomeScreen} />
-          <Stack.Screen name="Details" component={DetailsScreen} />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <AppNavigation initialRoute={getInitialRoute()} />
     </SafeAreaView>
   );
 }
