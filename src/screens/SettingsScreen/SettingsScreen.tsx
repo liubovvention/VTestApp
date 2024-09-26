@@ -1,10 +1,12 @@
 import {Text, View} from 'react-native';
+import { useThemedStyles } from 'styles/commonStyles';
 import styles from './SettingsScreenStyles';
 
 export default function SettingsScreen() {
+  const themedStyles = useThemedStyles();
   return (
-    <View style={styles.viewContainer}>
-      <Text>Use the menu to explore your options</Text>
+    <View style={themedStyles.container}>
+      <Text style={[styles.info, themedStyles.text]}>Use the menu to explore your options</Text>
     </View>
   );
 }

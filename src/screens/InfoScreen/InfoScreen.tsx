@@ -2,9 +2,11 @@ import { useEffect, useState } from 'react';
 import DeviceInfo from 'react-native-device-info';
 import {Text, View} from 'react-native';
 import styles from './InfoScreenStyles';
+import { useThemedStyles } from 'styles/commonStyles';
 
 
 export default function InfoScreen() {
+  const themedStyles = useThemedStyles();
   const [appInfo, setAppInfo] = useState({ version: '', build: '' });
 
   useEffect(() => {
@@ -18,8 +20,8 @@ export default function InfoScreen() {
   }, []);
 
   return (
-    <View style={styles.viewContainer}>
-      <Text style={styles.title}>App Information</Text>
+    <View style={themedStyles.container}>
+      <Text style={themedStyles.title}>App Information</Text>
       <Text style={styles.info}>Version: {appInfo.version}</Text>
       <Text style={styles.info}>Build: {appInfo.build}</Text>
     </View>

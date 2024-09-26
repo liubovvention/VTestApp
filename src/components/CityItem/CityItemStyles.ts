@@ -1,6 +1,7 @@
-import {Dimensions, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
+import {width} from 'styles/commonStyles';
+import { blueColors, grayColors } from 'styles/themeColors';
 
-const {width, height} = Dimensions.get('screen');
 
 const styles = StyleSheet.create({
     itemContainer: {
@@ -9,7 +10,7 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       padding: 5,
       borderBottomWidth: 1,
-      borderBottomColor: '#ccc',
+      borderBottomColor: grayColors.gray25,
     },
     weatherIcon: {
       width: 50,
@@ -29,7 +30,7 @@ const styles = StyleSheet.create({
       fontSize: 16,
     },
     tempContainer: {
-      backgroundColor: 'blue',
+      backgroundColor: blueColors.blue50,
       borderRadius: 15,
       justifyContent: 'center',
       alignItems: 'center',
@@ -54,7 +55,7 @@ const styles = StyleSheet.create({
       height: 50,
     },
     chevronIcon: {
-      color: 'gray',
+      color: grayColors.gray50,
     },
   });
 

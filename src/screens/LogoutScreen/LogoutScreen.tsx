@@ -1,11 +1,13 @@
 import {Text, View} from 'react-native';
-import styles from './LogoutScreenStyles';
+//import styles from './LogoutScreenStyles';
+import { useThemedStyles } from 'styles/commonStyles';
 
 export default function LogoutScreen() {
+  const themedStyles = useThemedStyles();
   //logout logic will be here
   return (
-    <View style={styles.viewContainer}>
-      <Text>Logout Screen</Text>
+    <View style={themedStyles.container}>
+      <Text style={themedStyles.title}>Logout Screen</Text>
     </View>
   );
 }

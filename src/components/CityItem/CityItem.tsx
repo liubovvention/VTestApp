@@ -5,7 +5,9 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {kelvinToFahrenheit} from 'utils/tempUtils';
 import {StackParamList} from 'types/navigation';
 import {CityWeather} from 'types/weather';
+import { useThemedStyles } from 'styles/commonStyles';
 import styles from './CityItemStyles';
+
 
 interface CityItemProps {
   item: CityWeather;
@@ -13,14 +15,15 @@ interface CityItemProps {
 }
 
 const CityItem: React.FC<CityItemProps> = ({item, isPressable = true}) => {
+  const themedStyles = useThemedStyles();
   const navigation = useNavigation<NativeStackNavigationProp<StackParamList>>();
   const iconUrl = `https://openweathermap.org/img/wn/${item.icon}.png`;
   return (
     <View style={styles.itemContainer}>
       <Image source={{uri: iconUrl}} style={styles.weatherIcon} />
       <View style={styles.descrContainer}>
-        <Text style={styles.cityTitle}>{item.city}</Text>
-        <Text style={styles.weatherDescr}>{item.descr}</Text>
+        <Text style={[styles.cityTitle, themedStyles.primaryText]}>{item.city}</Text>
+        <Text style={[styles.weatherDescr, themedStyles.secondaryText]}>{item.descr}</Text>
       </View>
       <View style={styles.tempContainer}>
         <Text style={styles.temp}>{kelvinToFahrenheit(item.temp)}°F</Text>

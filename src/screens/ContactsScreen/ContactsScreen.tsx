@@ -1,8 +1,11 @@
 import {useCallback} from 'react';
-import {Button, Linking, Pressable, Text, View} from 'react-native';
+import {Linking, Pressable, Text, View} from 'react-native';
+import { useThemedStyles } from 'styles/commonStyles';
 import styles from './ContactsScreenStyles';
 
 export default function ContactsScreen() {
+  const themedStyles = useThemedStyles();
+  
   const handleEmailPress = useCallback(() => {
     const email = 'support@example.com';
     Linking.openURL(`mailto:${email}`);
@@ -19,31 +22,34 @@ export default function ContactsScreen() {
   }, []);
 
   return (
-    <View style={styles.viewContainer}>
-      <Text style={styles.title}>Contact Our Support Team</Text>
+    <View style={themedStyles.container}>
+      <Text style={themedStyles.title}>Contact Our Support Team</Text>
       <Pressable
         onPress={handleEmailPress}
         style={({pressed}) => [
           styles.button,
-          pressed ? styles.buttonPressed : null,
+          themedStyles.button,
+          pressed ? themedStyles.buttonPressed : null,
         ]}>
-        <Text style={styles.label}>By Email</Text>
+        <Text style={themedStyles.buttonLabel}>By Email</Text>
       </Pressable>
       <Pressable
         onPress={handlePhonePress}
         style={({pressed}) => [
           styles.button,
-          pressed ? styles.buttonPressed : null,
+          themedStyles.button,
+          pressed ? themedStyles.buttonPressed : null,
         ]}>
-        <Text style={styles.label}>By Phone</Text>
+        <Text style={themedStyles.buttonLabel}>By Phone</Text>
       </Pressable>
       <Pressable
         onPress={handleSmsPress}
         style={({pressed}) => [
           styles.button,
-          pressed ? styles.buttonPressed : null,
+          themedStyles.button,
+          pressed ? themedStyles.buttonPressed : null,
         ]}>
-        <Text style={styles.label}>Via SMS</Text>
+        <Text style={themedStyles.buttonLabel}>Via SMS</Text>
       </Pressable>
     </View>
   );

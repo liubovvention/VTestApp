@@ -1,21 +1,17 @@
-import {
-  FlatList,
-  Text,
-  View,
-} from 'react-native';
-import { useGetCitiesWeatherData } from 'hooks/useGetCitiesWeatherData';
+import {FlatList, Text, View} from 'react-native';
+import {useGetCitiesWeatherData} from 'hooks/useGetCitiesWeatherData';
 import {CityItem} from 'components';
 import citiesList from './data/citiesList.json';
-import styles from './HomeScreenStyles';
-
+import {useThemedStyles} from 'styles/commonStyles';
 
 export default function HomeScreen() {
-  const { citiesWeather, loading, error } = useGetCitiesWeatherData(citiesList);
+  const themedStyles = useThemedStyles();
+  const {citiesWeather, loading, error} = useGetCitiesWeatherData(citiesList);
 
   return (
-    <View style={styles.viewContainer}>
-      {loading && <Text>Loading...</Text>}
-      {error && <Text>Error: {error}</Text>}
+    <View style={themedStyles.container}>
+      {loading && <Text style={themedStyles.text}>Loading...</Text>}
+      {error && <Text style={themedStyles.text}>Error: {error}</Text>}
       {citiesWeather && (
         <FlatList
           data={citiesWeather}

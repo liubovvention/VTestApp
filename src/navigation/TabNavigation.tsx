@@ -1,7 +1,8 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {HomeScreen, SettingsScreen} from 'screens';
+import {HomeScreen} from 'screens';
 import SettingsNavigation from './SettingsNavigation';
+import { blueColors, grayColors } from 'styles/themeColors';
 
 const TabNavigation = () => {
   const Tab = createBottomTabNavigator();
@@ -19,8 +20,8 @@ const TabNavigation = () => {
           }
           return <Icon name={iconName} size={20} color="white" />;
         },
-        tabBarActiveBackgroundColor: 'blue',
-        tabBarInactiveBackgroundColor: 'gray',
+        tabBarActiveBackgroundColor: blueColors.blue100,
+        tabBarInactiveBackgroundColor: grayColors.gray100,
         tabBarActiveTintColor: 'white',
         tabBarInactiveTintColor: 'white',
         tabBarLabelStyle: {
