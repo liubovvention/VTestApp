@@ -1,7 +1,7 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import SettingsNavigation from 'navigation/SettingsNavigation';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {HomeScreen, SettingsScreen} from 'screens';
+import SettingsNavigation from './SettingsNavigation';
 
 const TabNavigation = () => {
   const Tab = createBottomTabNavigator();
@@ -23,10 +23,10 @@ const TabNavigation = () => {
         tabBarInactiveBackgroundColor: 'gray',
         tabBarActiveTintColor: 'white',
         tabBarInactiveTintColor: 'white',
-        headerShown: false,
+        headerShown: true,
       })}>
       <Tab.Screen name="Weather" component={HomeScreen} />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
+      <Tab.Screen name="Settings" component={SettingsNavigation} options={{headerShown: false}} />
     </Tab.Navigator>
   );
 };
