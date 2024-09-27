@@ -1,5 +1,5 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import { ActivityIndicator } from 'react-native';
+import {ActivityIndicator} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AppNavigation from 'navigation/AppNavigation';
@@ -12,8 +12,9 @@ type TabNavigationProps = {
   initialRoute: keyof StackParamList;
 };
 
+const Tab = createBottomTabNavigator();
+
 const TabNavigation = ({initialRoute}: TabNavigationProps) => {
-  const Tab = createBottomTabNavigator();
   const [isLoading, setIsLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -29,15 +30,11 @@ const TabNavigation = ({initialRoute}: TabNavigationProps) => {
   }, []);
 
   const getInitialRoute = useCallback((): keyof StackParamList => {
-    if (isLoggedIn) {
-      return ScreenNames.Weather;
-    } else {
-      return ScreenNames.Login;
-    }
+    return isLoggedIn ? ScreenNames.Weather : ScreenNames.Login;
   }, [isLoggedIn]);
 
   if (isLoading) {
-    return <ActivityIndicator />; 
+    return <ActivityIndicator />;
   }
 
   return (
