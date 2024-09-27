@@ -1,5 +1,4 @@
 import {Text, View} from 'react-native';
-//import styles from './LogoutScreenStyles';
 import { useThemedStyles } from 'styles/commonStyles';
 
 export default function LogoutScreen() {

@@ -1,6 +1,6 @@
 import {Text, View} from 'react-native';
 import { useThemedStyles } from 'styles/commonStyles';
-import styles from './SettingsScreenStyles';
+import styles from 'src/screens/SettingsScreen/SettingsScreenStyles';
 
 export default function SettingsScreen() {
   const themedStyles = useThemedStyles();

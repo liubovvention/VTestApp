@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import DeviceInfo from 'react-native-device-info';
 import {Text, View} from 'react-native';
-import styles from './InfoScreenStyles';
 import { useThemedStyles } from 'styles/commonStyles';
+import styles from 'src/screens/InfoScreen/InfoScreenStyles';
 
 
 export default function InfoScreen() {

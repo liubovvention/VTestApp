@@ -1,6 +1,6 @@
 import {Dimensions, StyleSheet} from 'react-native';
 import {useColorScheme} from 'react-native';
-import {lightColors, darkColors, blueColors} from './themeColors';
+import {lightColors, darkColors, blueColors} from 'styles/themeColors';
 
 export const {width, height} = Dimensions.get('screen');
 

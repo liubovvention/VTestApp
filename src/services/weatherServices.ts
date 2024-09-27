@@ -1,5 +1,5 @@
 import {CityWeather, WeatherResponse} from 'types/weather';
-import ApiService from './apiService';
+import ApiService from 'services/apiService';
 
 class WeatherServices {
   public static async getCityWeather(
