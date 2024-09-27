@@ -8,7 +8,8 @@ export enum ScreenNames {
   GeneralSettings = 'General Settings',
   Info = 'App Info',
   Contacts = 'Contacts',
-  Logout = 'Log Out'
+  Logout = 'Log Out',
+  Login = 'Log In',
 }
 
 export type StackParamList = {
@@ -17,6 +18,7 @@ export type StackParamList = {
   Details: CityWeather; // Screen "City Weather"
   Settings: undefined;
   Contacts: undefined;
+  'Log In': undefined;
   'Log Out': undefined;
   'App Info': undefined;
 };

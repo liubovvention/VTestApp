@@ -1,9 +1,12 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import { ActivityIndicator } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import AppNavigation from 'navigation/AppNavigation';
 import SettingsNavigation from 'navigation/SettingsNavigation';
 import {basicColors, blueColors, grayColors} from 'styles/themeColors';
 import {StackParamList, ScreenNames} from 'types/navigation';
+import {useCallback, useEffect, useState} from 'react';
 
 type TabNavigationProps = {
   initialRoute: keyof StackParamList;
@@ -11,6 +14,32 @@ type TabNavigationProps = {
 
 const TabNavigation = ({initialRoute}: TabNavigationProps) => {
   const Tab = createBottomTabNavigator();
+  const [isLoading, setIsLoading] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const checkLoginStatus = async () => {
+      const loggedIn = await AsyncStorage.getItem('rememberMe');
+      if (loggedIn) {
+        console.log('DEBUG remember me stored to ', loggedIn);
+        setIsLoggedIn(true);
+      }
+      setIsLoading(false);
+    };
+    checkLoginStatus();
+  }, []);
+
+  const getInitialRoute = useCallback((): keyof StackParamList => {
+    if (isLoggedIn) {
+      return ScreenNames.Weather;
+    } else {
+      return ScreenNames.Login;
+    }
+  }, [isLoggedIn]);
+
+  if (isLoading) {
+    return <ActivityIndicator />; 
+  }
 
   return (
     <Tab.Navigator
@@ -37,7 +66,7 @@ const TabNavigation = ({initialRoute}: TabNavigationProps) => {
       })}>
       <Tab.Screen
         name={ScreenNames.Weather}
-        children={() => <AppNavigation initialRoute={initialRoute} />}
+        children={() => <AppNavigation initialRoute={getInitialRoute()} />}
         options={{headerShown: false}}
       />
       <Tab.Screen

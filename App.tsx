@@ -5,7 +5,7 @@
  * @format
  */
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   SafeAreaView,
   StatusBar,
@@ -13,20 +13,13 @@ import {
   useColorScheme,
 } from 'react-native';
 import TabNavigation from 'navigation/TabNavigation';
-import {StackParamList} from 'types/navigation';
+import {ScreenNames, StackParamList} from 'types/navigation';
 import {lightColors, darkColors} from 'styles/themeColors';
 import {NavigationContainer} from '@react-navigation/native';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
   const styles = getStyles(isDarkMode);
-
-  const getInitialRoute = (): keyof StackParamList => {
-    // if (isLoggedIn) return 'Weather';
-    // if (isFirstTime) return 'Login';
-
-    return 'Weather';
-  };
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -37,7 +30,7 @@ function App() {
         }
       />
       <NavigationContainer>
-        <TabNavigation initialRoute={getInitialRoute()} />
+        <TabNavigation initialRoute={ScreenNames.Weather} />
       </NavigationContainer>
     </SafeAreaView>
   );

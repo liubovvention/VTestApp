@@ -12,6 +12,7 @@ const config = {
       extraNodeModules: {
         'src': path.resolve(__dirname, './src'),
         'types': path.resolve(__dirname, './types'),
+        'data': path.resolve(__dirname, './data'),
         'components': path.resolve(__dirname, './src/components'),
         'navigation': path.resolve(__dirname, './src/navigation'),
         'hooks': path.resolve(__dirname, './src/hooks'),

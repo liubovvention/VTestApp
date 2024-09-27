@@ -16,7 +16,8 @@ export const grayColors = {
 
 export const basicColors = {
   white: '#FFFFFF',
-  black: '#000000'
+  black: '#000000',
+  red: 'red',
 }
 
 export const lightColors = {

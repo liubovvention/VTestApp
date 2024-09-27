@@ -1,5 +1,5 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {DetailsScreen, HomeScreen} from 'screens';
+import {DetailsScreen, HomeScreen, LoginScreen} from 'screens';
 import {StackParamList, ScreenNames} from 'types/navigation';
 
 type AppNavigationProps = {
@@ -17,6 +17,7 @@ const AppNavigation = ({initialRoute}: AppNavigationProps) => {
           options={{headerShown: false}}
         />
         <Stack.Screen name={ScreenNames.Details} component={DetailsScreen} />
+        <Stack.Screen name={ScreenNames.Login} component={LoginScreen} />
       </Stack.Navigator>
   );
 };
