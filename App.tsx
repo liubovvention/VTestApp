@@ -5,30 +5,32 @@
  * @format
  */
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import {
+  SafeAreaView,
+  StatusBar,
+  StyleSheet,
+  useColorScheme,
+} from 'react-native';
+import TabNavigation from 'navigation/TabNavigation';
+import {ScreenNames, StackParamList} from 'types/navigation';
+import {lightColors, darkColors} from 'styles/themeColors';
 import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {SafeAreaView, StatusBar, StyleSheet, useColorScheme} from 'react-native';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
-import {HomeScreen, DetailsScreen} from 'screens';
-import {StackParamList} from 'types/navigation';
-
-const Stack = createNativeStackNavigator<StackParamList>();
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
   const styles = getStyles(isDarkMode);
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={isDarkMode ? Colors.darker : Colors.lighter}
+        backgroundColor={
+          isDarkMode ? darkColors.background : lightColors.background
+        }
       />
       <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="Weather" component={HomeScreen} />
-          <Stack.Screen name="Details" component={DetailsScreen} />
-        </Stack.Navigator>
+        <TabNavigation initialRoute={ScreenNames.Weather} />
       </NavigationContainer>
     </SafeAreaView>
   );
@@ -37,7 +39,9 @@ function App() {
 const getStyles = (isDarkMode: boolean) =>
   StyleSheet.create({
     safeArea: {
-      backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+      backgroundColor: isDarkMode
+        ? darkColors.background
+        : lightColors.background,
       flex: 1,
     },
   });

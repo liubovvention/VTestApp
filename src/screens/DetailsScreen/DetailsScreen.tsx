@@ -2,7 +2,7 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {Text, View} from 'react-native';
 import {StackParamList} from 'types/navigation';
 import {CityItem} from 'components';
-import styles from './DetailsScreenStyles';
+import styles from 'src/screens/DetailsScreen/DetailsScreenStyles';
 
 type DetailsProps = NativeStackScreenProps<StackParamList, 'Details'>;
 

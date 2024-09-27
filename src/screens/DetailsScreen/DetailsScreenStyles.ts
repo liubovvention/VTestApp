@@ -1,6 +1,4 @@
-import {Dimensions, StyleSheet} from 'react-native';
-
-const {width, height} = Dimensions.get('screen');
+import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   wrapper: {flex: 1},
