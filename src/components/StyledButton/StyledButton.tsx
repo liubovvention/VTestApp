@@ -1,11 +1,11 @@
 import {Pressable, StyleProp, Text, ViewStyle} from 'react-native';
-import {useThemedStyles} from 'src/styles/commonStyles';
+import {useThemedStyles} from 'styles/commonStyles';
 
-export type StyledButtonProps = {
+export type StyledButtonProps<T extends any[] = any[]> = {
   label?: string;
   icon?: string;
   styles?: StyleProp<ViewStyle> | StyleProp<ViewStyle>[];
-  onPress: () => void;
+  onPress: (...args: T) => void;
 };
 
 const StyledButton: React.FC<StyledButtonProps> = (
