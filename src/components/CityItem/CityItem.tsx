@@ -6,7 +6,7 @@ import {kelvinToFahrenheit} from 'utils/tempUtils';
 import {StackParamList} from 'types/navigation';
 import {CityWeather} from 'types/weather';
 import { useThemedStyles } from 'styles/commonStyles';
-import styles from './CityItemStyles';
+import styles from 'src/components/CityItem/CityItemStyles';
 
 
 interface CityItemProps {

@@ -3,13 +3,13 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import AppNavigation from 'navigation/AppNavigation';
 import SettingsNavigation from 'navigation/SettingsNavigation';
 import {basicColors, blueColors, grayColors} from 'styles/themeColors';
-import { StackParamList } from 'types/navigation';
+import {StackParamList, ScreenNames} from 'types/navigation';
 
 type TabNavigationProps = {
   initialRoute: keyof StackParamList;
 };
 
-const TabNavigation = ({ initialRoute }: TabNavigationProps) => {
+const TabNavigation = ({initialRoute}: TabNavigationProps) => {
   const Tab = createBottomTabNavigator();
 
   return (
@@ -18,9 +18,9 @@ const TabNavigation = ({ initialRoute }: TabNavigationProps) => {
       screenOptions={({route}) => ({
         tabBarIcon: () => {
           let iconName = 'ios-information-circle';
-          if (route.name === 'Weather') {
+          if (route.name === ScreenNames.Weather) {
             iconName = 'cloud';
-          } else if (route.name === 'Settings') {
+          } else if (route.name === ScreenNames.Settings) {
             iconName = 'gear';
           }
           return <Icon name={iconName} size={20} color={basicColors.white} />;
@@ -35,14 +35,13 @@ const TabNavigation = ({ initialRoute }: TabNavigationProps) => {
         },
         headerShown: true,
       })}>
-      {/* <Tab.Screen name="Weather" component={AppNavigation} /> */}
       <Tab.Screen
-        name="Weather"
+        name={ScreenNames.Weather}
         children={() => <AppNavigation initialRoute={initialRoute} />}
         options={{headerShown: false}}
       />
       <Tab.Screen
-        name="Settings"
+        name={ScreenNames.Settings}
         component={SettingsNavigation}
         options={{headerShown: false}}
       />

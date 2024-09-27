@@ -1,21 +1,21 @@
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import {NavigationContainer} from '@react-navigation/native';
 import {
   SettingsScreen,
   InfoScreen,
   LogoutScreen,
   ContactsScreen,
 } from 'screens';
+import { ScreenNames } from 'types/navigation';
 
 const Drawer = createDrawerNavigator();
 
 const SettingsNavigation = () => {
   return (
-    <Drawer.Navigator initialRouteName="Settings">
-      <Drawer.Screen name="All Settings" component={SettingsScreen} />
-      <Drawer.Screen name="App Info" component={InfoScreen} />
-      <Drawer.Screen name="Contacts" component={ContactsScreen} />
-      <Drawer.Screen name="Log Out" component={LogoutScreen} />
+    <Drawer.Navigator initialRouteName={ScreenNames.Settings}>
+      <Drawer.Screen name={ScreenNames.GeneralSettings} component={SettingsScreen} />
+      <Drawer.Screen name={ScreenNames.Info} component={InfoScreen} />
+      <Drawer.Screen name={ScreenNames.Contacts} component={ContactsScreen} />
+      <Drawer.Screen name={ScreenNames.Logout} component={LogoutScreen} />
     </Drawer.Navigator>
   );
 };

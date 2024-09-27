@@ -1,6 +1,6 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {DetailsScreen, HomeScreen} from 'screens';
-import {StackParamList} from 'types/navigation';
+import {StackParamList, ScreenNames} from 'types/navigation';
 
 type AppNavigationProps = {
   initialRoute: keyof StackParamList;
@@ -12,11 +12,11 @@ const AppNavigation = ({initialRoute}: AppNavigationProps) => {
   return (
       <Stack.Navigator initialRouteName={initialRoute}>
         <Stack.Screen
-          name="Home"
+          name={ScreenNames.Home}
           component={HomeScreen}
           options={{headerShown: false}}
         />
-        <Stack.Screen name="Details" component={DetailsScreen} />
+        <Stack.Screen name={ScreenNames.Details} component={DetailsScreen} />
       </Stack.Navigator>
   );
 };
