@@ -1,8 +1,5 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {NavigationContainer} from '@react-navigation/native';
-
-import TabNavigation from 'navigation/TabNavigation';
-import {DetailsScreen} from 'screens';
+import {DetailsScreen, HomeScreen} from 'screens';
 import {StackParamList} from 'types/navigation';
 
 type AppNavigationProps = {
@@ -13,16 +10,14 @@ const AppNavigation = ({initialRoute}: AppNavigationProps) => {
   const Stack = createNativeStackNavigator<StackParamList>();
 
   return (
-    <NavigationContainer>
       <Stack.Navigator initialRouteName={initialRoute}>
         <Stack.Screen
           name="Home"
-          component={TabNavigation}
+          component={HomeScreen}
           options={{headerShown: false}}
         />
         <Stack.Screen name="Details" component={DetailsScreen} />
       </Stack.Navigator>
-    </NavigationContainer>
   );
 };
 

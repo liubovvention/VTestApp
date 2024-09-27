@@ -12,9 +12,10 @@ import {
   StyleSheet,
   useColorScheme,
 } from 'react-native';
-import AppNavigation from 'navigation/AppNavigation';
+import TabNavigation from 'navigation/TabNavigation';
 import {StackParamList} from 'types/navigation';
-import { lightColors, darkColors } from 'styles/themeColors';
+import {lightColors, darkColors} from 'styles/themeColors';
+import {NavigationContainer} from '@react-navigation/native';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
@@ -31,11 +32,13 @@ function App() {
     <SafeAreaView style={styles.safeArea}>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={isDarkMode ? darkColors.background : lightColors.background}
+        backgroundColor={
+          isDarkMode ? darkColors.background : lightColors.background
+        }
       />
-
-        <AppNavigation initialRoute={getInitialRoute()} />
-
+      <NavigationContainer>
+        <TabNavigation initialRoute={getInitialRoute()} />
+      </NavigationContainer>
     </SafeAreaView>
   );
 }
@@ -43,7 +46,9 @@ function App() {
 const getStyles = (isDarkMode: boolean) =>
   StyleSheet.create({
     safeArea: {
-      backgroundColor: isDarkMode ? darkColors.background : lightColors.background,
+      backgroundColor: isDarkMode
+        ? darkColors.background
+        : lightColors.background,
       flex: 1,
     },
   });
