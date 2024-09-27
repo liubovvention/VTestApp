@@ -1,24 +1,29 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {View, Text, TextInput, Alert, StyleSheet, Switch} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {validateEmail} from 'utils/validateUtil';
 import {StyledButton} from 'components';
-import {useThemedStyles} from 'styles/commonStyles';
 import user from 'data/user.json';
+import {ScreenNames, StackParamList} from 'types/navigation';
+import {useThemedStyles} from 'styles/commonStyles';
 import styles from 'src/screens/LoginScreen/LoginScreenStyles';
 
 export default function LoginScreen() {
+  const navigation = useNavigation<NativeStackNavigationProp<StackParamList>>();
   const themedStyles = useThemedStyles();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [rememberMe, setRememberMe] = useState(false);
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [rememberMe, setRememberMe] = useState<boolean>(false);
+  const [error, setError] = useState<string>('');
 
   useEffect(() => {
     const checkLoginStatus = async () => {
       const loggedIn = await AsyncStorage.getItem('rememberMe');
       if (loggedIn) {
         setRememberMe(true);
+        navigation.navigate(ScreenNames.Home);
       }
     };
     checkLoginStatus();
@@ -33,14 +38,14 @@ export default function LoginScreen() {
     if (email === user.email && password === user.password) {
       if (rememberMe) {
         await AsyncStorage.setItem('rememberMe', 'true');
+        setRememberMe(true);
       }
-      setRememberMe(true);
+      navigation.navigate(ScreenNames.Home);
       Alert.alert('Login successful!');
-      //&move to home screen
     } else {
       Alert.alert('Invalid email or password');
     }
-  }, [setRememberMe]);
+  }, [email, password, rememberMe, navigation]);
 
   return (
     <View style={themedStyles.container}>
@@ -62,9 +67,20 @@ export default function LoginScreen() {
       />
       <View style={styles.checkboxContainer}>
         <Switch value={rememberMe} onValueChange={setRememberMe} />
-        <Text style={[themedStyles.primaryText, styles.label, {paddingHorizontal: 5}]}>Remember me</Text>
+        <Text
+          style={[
+            themedStyles.primaryText,
+            styles.label,
+            {paddingHorizontal: 5},
+          ]}>
+          Remember me
+        </Text>
       </View>
-      <StyledButton label="Login" onPress={handleLogin} styles={styles.button} />
+      <StyledButton
+        label="Login"
+        onPress={handleLogin}
+        styles={styles.button}
+      />
     </View>
   );
 }
