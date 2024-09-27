@@ -14,22 +14,27 @@ export const grayColors = {
   gray100: '#908c98',
 };
 
+export const basicColors = {
+  white: '#FFFFFF',
+  black: '#000000'
+}
+
 export const lightColors = {
-  background: '#ffffff',
-  text: '#000000',
-  primary: '#3E3E3E',
-  secondary: '#6D6D6D',
-  border: '#E0E0E0',
+  background: basicColors.white,
+  text: basicColors.black,
+  primary: grayColors.gray75,
+  secondary: grayColors.gray50,
+  border: grayColors.gray25,
   buttonBackground: blueColors.blue75,
-  buttonText: '#FFFFFF',
+  buttonText: basicColors.white,
 };
 
 export const darkColors = {
-  background: '#000000',
-  text: '#FFFFFF',
-  primary: '#FEFEFE',
-  secondary: '#E0E0E0',
-  border: '#333333',
+  background: basicColors.black,
+  text: basicColors.white,
+  primary: grayColors.gray0,
+  secondary: grayColors.gray25,
+  border: grayColors.gray25,
   buttonBackground: blueColors.blue75,
-  buttonText: '#FFFFFF',
+  buttonText: basicColors.white,
 };
