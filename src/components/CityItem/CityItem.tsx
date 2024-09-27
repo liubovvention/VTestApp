@@ -3,7 +3,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {kelvinToFahrenheit} from 'utils/tempUtils';
-import {StackParamList} from 'types/navigation';
+import {ScreenNames, StackParamList} from 'types/navigation';
 import {CityWeather} from 'types/weather';
 import { useThemedStyles } from 'styles/commonStyles';
 import styles from 'src/components/CityItem/CityItemStyles';
@@ -32,7 +32,7 @@ const CityItem: React.FC<CityItemProps> = ({item, isPressable = true}) => {
         <View style={styles.actionContainer}>
         <Pressable
           style={styles.button}
-          onPress={() => navigation.navigate('Details', item)}>
+          onPress={() => navigation.navigate(ScreenNames.Details, item)}>
           <Icon name="chevron-right" size={20} style={styles.chevronIcon} />
         </Pressable>
       </View>

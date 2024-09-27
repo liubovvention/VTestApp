@@ -21,7 +21,6 @@ const TabNavigation = ({initialRoute}: TabNavigationProps) => {
     const checkLoginStatus = async () => {
       const loggedIn = await AsyncStorage.getItem('rememberMe');
       if (loggedIn) {
-        console.log('DEBUG remember me stored to ', loggedIn);
         setIsLoggedIn(true);
       }
       setIsLoading(false);
