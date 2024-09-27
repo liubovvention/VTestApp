@@ -7,23 +7,23 @@ import styles from 'src/screens/ContactsScreen/ContactsScreenStyles';
 export default function ContactsScreen() {
   const themedStyles = useThemedStyles();
 
-  const handleButtonPress = useCallback((action: string) => {
-    let linkingAction;
-    switch (action) {
+  const handleButtonPress = useCallback((chanel: string) => {
+    let action;
+    switch (chanel) {
       case 'email':
         const email = 'support@example.com';
-        linkingAction = `mailto:${email}`;
+        action = `mailto:${email}`;
         break;
       case 'phone':
-        linkingAction = 'tel:+1234567890';
+        action = 'tel:+1234567890';
         break;
       case 'sms':
-        linkingAction = 'sms:+1234567890';
+        action = 'sms:+1234567890';
         break;
       default:
         break;
     }
-    if (linkingAction) Linking.openURL(linkingAction);
+    if (action) Linking.openURL(action);
   }, []);
 
   return (
