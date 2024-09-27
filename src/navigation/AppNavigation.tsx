@@ -6,19 +6,19 @@ type AppNavigationProps = {
   initialRoute: keyof StackParamList;
 };
 
-const AppNavigation = ({initialRoute}: AppNavigationProps) => {
-  const Stack = createNativeStackNavigator<StackParamList>();
+const Stack = createNativeStackNavigator<StackParamList>();
 
+const AppNavigation = ({initialRoute}: AppNavigationProps) => {
   return (
-      <Stack.Navigator initialRouteName={initialRoute}>
-        <Stack.Screen
-          name={ScreenNames.Home}
-          component={HomeScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen name={ScreenNames.Details} component={DetailsScreen} />
-        <Stack.Screen name={ScreenNames.Login} component={LoginScreen} />
-      </Stack.Navigator>
+    <Stack.Navigator initialRouteName={initialRoute}>
+      <Stack.Screen
+        name={ScreenNames.Home}
+        component={HomeScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen name={ScreenNames.Details} component={DetailsScreen} />
+      <Stack.Screen name={ScreenNames.Login} component={LoginScreen} />
+    </Stack.Navigator>
   );
 };
 
