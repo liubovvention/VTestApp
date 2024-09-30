@@ -11,7 +11,6 @@ export default function LogoutScreen() {
   useEffect(() => {
     const handleLogout = async () => {
       onLogout();
-      await AsyncStorage.removeItem('rememberMe');
       Alert.alert('Logged out successfully');
     };
 

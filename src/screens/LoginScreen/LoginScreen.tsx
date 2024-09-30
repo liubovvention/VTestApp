@@ -20,17 +20,6 @@ export default function LoginScreen() {
   const [rememberMe, setRememberMe] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
 
-  useEffect(() => {
-    const checkLoginStatus = async () => {
-      const loggedIn = await AsyncStorage.getItem('rememberMe');
-      if (loggedIn) {
-        setRememberMe(true);
-        navigation.navigate(ScreenNames.Home);
-      }
-    };
-    checkLoginStatus();
-  }, []);
-
   const handleLogin = useCallback(async () => {
     setError('');
     if (!validateEmail(email)) {
@@ -38,11 +27,7 @@ export default function LoginScreen() {
       return;
     }
     if (email === user.email && password === user.password) {
-      if (rememberMe) {
-        await AsyncStorage.setItem('rememberMe', 'true');
-        setRememberMe(true);
-      }
-      const payload = {keepAuth: rememberMe, user: {email: email}};
+      const payload = {isLoggedIn: rememberMe, user: {email: email}};
       onLogin(payload);
       navigation.navigate(ScreenNames.Home);
       Alert.alert('Logged in successfuly!');

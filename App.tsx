@@ -14,7 +14,8 @@ import {
 } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {Provider} from 'react-redux';
-import store from 'store/store';
+import {PersistGate} from 'redux-persist/integration/react';
+import store, {persistor} from 'store/store';
 import TabNavigation from 'navigation/TabNavigation';
 import {ScreenNames} from 'types/navigation';
 import {lightColors, darkColors} from 'styles/themeColors';
@@ -32,9 +33,11 @@ function App() {
         }
       />
       <Provider store={store}>
-        <NavigationContainer>
-          <TabNavigation initialRoute={ScreenNames.Weather} />
-        </NavigationContainer>
+        <PersistGate loading={null} persistor={persistor}>
+          <NavigationContainer>
+            <TabNavigation initialRoute={ScreenNames.Weather} />
+          </NavigationContainer>
+        </PersistGate>
       </Provider>
     </SafeAreaView>
   );

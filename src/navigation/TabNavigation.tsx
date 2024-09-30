@@ -7,6 +7,8 @@ import SettingsNavigation from 'navigation/SettingsNavigation';
 import {basicColors, blueColors, grayColors} from 'styles/themeColors';
 import {StackParamList, ScreenNames} from 'types/navigation';
 import {useCallback, useEffect, useState} from 'react';
+import { useAppSelector } from 'src/hooks/useStore';
+import { selectisLoggedIn, selectUser } from 'src/store/slices/auth/authSlice';
 
 type TabNavigationProps = {
   initialRoute: keyof StackParamList;
@@ -15,19 +17,20 @@ type TabNavigationProps = {
 const Tab = createBottomTabNavigator();
 
 const TabNavigation = ({initialRoute}: TabNavigationProps) => {
+  const user = useAppSelector(selectUser);
+  const isStoredLoggedIn = useAppSelector(selectisLoggedIn);
   const [isLoading, setIsLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     const checkLoginStatus = async () => {
-      const loggedIn = await AsyncStorage.getItem('rememberMe');
-      if (loggedIn) {
+      if (isStoredLoggedIn && user) {
         setIsLoggedIn(true);
       }
       setIsLoading(false);
     };
     checkLoginStatus();
-  }, []);
+  }, [isStoredLoggedIn, user]);
 
   const getInitialRoute = useCallback((): keyof StackParamList => {
     return isLoggedIn ? ScreenNames.Weather : ScreenNames.Login;

@@ -3,7 +3,7 @@ import {IAuthDataPayload, IAuthState} from 'store/slices/auth/types';
 
 const initialState: IAuthState = {
   isAuthenticated: false,
-  keepAuth: false,
+  isLoggedIn: false,
   user: null,
 };
 
@@ -11,13 +11,13 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   selectors: {
-    selectKeepAuth: state => state.keepAuth,
+    selectisLoggedIn: state => state.isLoggedIn,
     selectUser: state => state.user,
   },
   reducers: {
     onLogin: (state, action: PayloadAction<IAuthDataPayload>) => {
       state.isAuthenticated = true;
-      state.keepAuth = action.payload.keepAuth;
+      state.isLoggedIn = action.payload.isLoggedIn;
       state.user = action.payload.user;
     },
     onLogout: () => initialState,
@@ -25,5 +25,5 @@ const authSlice = createSlice({
 });
 
 export const {onLogin, onLogout} = authSlice.actions;
-export const {selectKeepAuth, selectUser} = authSlice.selectors;
+export const {selectisLoggedIn, selectUser} = authSlice.selectors;
 export default authSlice.reducer;

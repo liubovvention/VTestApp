@@ -4,11 +4,11 @@ export interface IUser {
 
 export interface IAuthState {
   isAuthenticated: boolean;
-  keepAuth: boolean;
+  isLoggedIn: boolean;
   user: IUser | null;
 }
 
 export interface IAuthDataPayload {
-  keepAuth: boolean;
+  isLoggedIn: boolean;
   user: IUser;
 }
