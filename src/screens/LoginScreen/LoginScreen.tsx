@@ -3,6 +3,7 @@ import {View, Text, TextInput, Alert, StyleSheet, Switch} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {useActions} from 'hooks/useActions';
 import {validateEmail} from 'utils/validateUtil';
 import {StyledButton} from 'components';
 import user from 'data/user.json';
@@ -13,6 +14,7 @@ import styles from 'src/screens/LoginScreen/LoginScreenStyles';
 export default function LoginScreen() {
   const navigation = useNavigation<NativeStackNavigationProp<StackParamList>>();
   const themedStyles = useThemedStyles();
+  const {onLogin} = useActions();
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [rememberMe, setRememberMe] = useState<boolean>(false);
@@ -40,8 +42,10 @@ export default function LoginScreen() {
         await AsyncStorage.setItem('rememberMe', 'true');
         setRememberMe(true);
       }
+      const payload = {keepAuth: rememberMe, user: {email: email}};
+      onLogin(payload);
       navigation.navigate(ScreenNames.Home);
-      Alert.alert('Login successful!');
+      Alert.alert('Logged in successfuly!');
     } else {
       Alert.alert('Invalid email or password');
     }
