@@ -16,7 +16,6 @@ const Drawer = createDrawerNavigator();
 const SettingsNavigation = () => {
   const user = useAppSelector(selectUser);
   const isStoredLoggedIn = useAppSelector(selectisLoggedIn);
-  //const [isLoading, setIsLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
@@ -24,7 +23,6 @@ const SettingsNavigation = () => {
       if (isStoredLoggedIn && user) {
         setIsLoggedIn(true);
       }
-      //setIsLoading(false);
     };
 
     checkLoginStatus();
