@@ -12,10 +12,12 @@ import {
   StyleSheet,
   useColorScheme,
 } from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {Provider} from 'react-redux';
+import store from 'store/store';
 import TabNavigation from 'navigation/TabNavigation';
 import {ScreenNames} from 'types/navigation';
 import {lightColors, darkColors} from 'styles/themeColors';
-import {NavigationContainer} from '@react-navigation/native';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
@@ -29,9 +31,11 @@ function App() {
           isDarkMode ? darkColors.background : lightColors.background
         }
       />
-      <NavigationContainer>
-        <TabNavigation initialRoute={ScreenNames.Weather} />
-      </NavigationContainer>
+      <Provider store={store}>
+        <NavigationContainer>
+          <TabNavigation initialRoute={ScreenNames.Weather} />
+        </NavigationContainer>
+      </Provider>
     </SafeAreaView>
   );
 }
