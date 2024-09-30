@@ -5,7 +5,7 @@
  * @format
  */
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
   SafeAreaView,
   StatusBar,
@@ -13,7 +13,7 @@ import {
   useColorScheme,
 } from 'react-native';
 import TabNavigation from 'navigation/TabNavigation';
-import {ScreenNames, StackParamList} from 'types/navigation';
+import {ScreenNames} from 'types/navigation';
 import {lightColors, darkColors} from 'styles/themeColors';
 import {NavigationContainer} from '@react-navigation/native';
 
