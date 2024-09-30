@@ -18,6 +18,7 @@ const config = {
         'hooks': path.resolve(__dirname, './src/hooks'),
         'screens': path.resolve(__dirname, './src/screens'),
         'services': path.resolve(__dirname, './src/services'),
+        'store': path.resolve(__dirname, './src/store'),
         'styles': path.resolve(__dirname, './src/styles'),
         'utils': path.resolve(__dirname, './src/utils'),
     },

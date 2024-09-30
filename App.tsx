@@ -5,17 +5,20 @@
  * @format
  */
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
   SafeAreaView,
   StatusBar,
   StyleSheet,
   useColorScheme,
 } from 'react-native';
-import TabNavigation from 'navigation/TabNavigation';
-import {ScreenNames, StackParamList} from 'types/navigation';
-import {lightColors, darkColors} from 'styles/themeColors';
 import {NavigationContainer} from '@react-navigation/native';
+import {Provider} from 'react-redux';
+import {PersistGate} from 'redux-persist/integration/react';
+import store, {persistor} from 'store/store';
+import TabNavigation from 'navigation/TabNavigation';
+import {ScreenNames} from 'types/navigation';
+import {lightColors, darkColors} from 'styles/themeColors';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
@@ -29,9 +32,13 @@ function App() {
           isDarkMode ? darkColors.background : lightColors.background
         }
       />
-      <NavigationContainer>
-        <TabNavigation initialRoute={ScreenNames.Weather} />
-      </NavigationContainer>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <NavigationContainer>
+            <TabNavigation initialRoute={ScreenNames.Weather} />
+          </NavigationContainer>
+        </PersistGate>
+      </Provider>
     </SafeAreaView>
   );
 }
