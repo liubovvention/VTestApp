@@ -5,6 +5,7 @@ export interface IUser {
 export interface IAuthState {
   isAuthenticated: boolean;
   isLoggedIn: boolean;
+  isBiometrics: boolean;
   user: IUser | null;
 }
 

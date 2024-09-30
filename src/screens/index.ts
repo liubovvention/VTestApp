@@ -5,3 +5,4 @@ export {default as InfoScreen} from 'src/screens/InfoScreen/InfoScreen';
 export {default as LogoutScreen} from 'src/screens/LogoutScreen/LogoutScreen';
 export {default as ContactsScreen} from 'src/screens/ContactsScreen/ContactsScreen';
 export {default as LoginScreen} from 'src/screens/LoginScreen/LoginScreen';
+export {default as BiometricScreen} from 'src/screens/BiometricScreen/BiometricScreen';
