@@ -1,4 +1,3 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useEffect} from 'react';
 import {Alert, Text, View} from 'react-native';
 import { useActions } from 'hooks/useActions';

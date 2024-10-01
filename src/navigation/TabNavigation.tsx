@@ -1,14 +1,18 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {ActivityIndicator} from 'react-native';
+import {ActivityIndicator, Alert} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import AppNavigation from 'navigation/AppNavigation';
 import SettingsNavigation from 'navigation/SettingsNavigation';
 import {basicColors, blueColors, grayColors} from 'styles/themeColors';
 import {StackParamList, ScreenNames} from 'types/navigation';
 import {useCallback, useEffect, useState} from 'react';
-import { useAppSelector } from 'src/hooks/useStore';
-import { selectisLoggedIn, selectUser } from 'src/store/slices/auth/authSlice';
+import {useAppSelector} from 'src/hooks/useStore';
+import useBiometricAuth from 'hooks/useBiometricAuth';
+import {
+  selectBiometrics,
+  selectisLoggedIn,
+  selectUser,
+} from 'src/store/slices/auth/authSlice';
 
 type TabNavigationProps = {
   initialRoute: keyof StackParamList;
@@ -17,20 +21,26 @@ type TabNavigationProps = {
 const Tab = createBottomTabNavigator();
 
 const TabNavigation = ({initialRoute}: TabNavigationProps) => {
+  const {authenticate} = useBiometricAuth();
   const user = useAppSelector(selectUser);
+  const isBiometrics = useAppSelector(selectBiometrics);
   const isStoredLoggedIn = useAppSelector(selectisLoggedIn);
   const [isLoading, setIsLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     const checkLoginStatus = async () => {
-      if (isStoredLoggedIn && user) {
-        setIsLoggedIn(true);
+      console.log("DEBUG bio check login status params: ", user, isStoredLoggedIn, isBiometrics )
+      if (user && isStoredLoggedIn && isBiometrics) {
+        console.log("DEBUG bio case: remember & bio")
+        const isAuth = await authenticate();
+        console.log("DEBUG bio case: remember & bio, isAuth = ", isAuth)
+        setIsLoggedIn(isAuth);
       }
       setIsLoading(false);
     };
     checkLoginStatus();
-  }, [isStoredLoggedIn, user]);
+  }, [isBiometrics, isStoredLoggedIn, user, authenticate]);
 
   const getInitialRoute = useCallback((): keyof StackParamList => {
     return isLoggedIn ? ScreenNames.Weather : ScreenNames.Login;
