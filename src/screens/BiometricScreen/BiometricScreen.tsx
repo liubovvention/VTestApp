@@ -49,32 +49,34 @@ export default function BiometricScreen() {
       const resultObject = await rnBiometrics.isSensorAvailable();
       const {available, biometryType} = resultObject;
 
-      if (available) {
-        if (biometryType === BiometryTypes.TouchID) {
-          showAlert(
-            'TouchID',
-            'Would you like to enable TouchID authentication for the next time?',
-            biometryType,
-          );
-        } else if (biometryType === BiometryTypes.FaceID) {
-          showAlert(
-            'FaceID',
-            'Would you like to enable FaceID authentication for the next time?',
-            biometryType,
-          );
-        } else if (biometryType === BiometryTypes.Biometrics) {
-            showAlert(
-            'Biometrics',
-            'Would you like to enable it for the next time?',
-            biometryType,
-          );
-        }
-      } else {
+      if (!available || !biometryType) {
         Alert.alert(
           'Biometrics not supported',
           'This device does not support biometric authentication.',
         );
+        return;
       }
+
+      let alertTitle: string = BiometryTypes.Biometrics;
+
+      switch (biometryType) {
+        case BiometryTypes.TouchID:
+          alertTitle = BiometryTypes.TouchID;
+          break;
+        case BiometryTypes.FaceID:
+          alertTitle = BiometryTypes.FaceID;
+          break;
+        case BiometryTypes.Biometrics:
+        default:
+          break;
+      }
+
+      showAlert(
+        alertTitle,
+        `Would you like to enable ${alertTitle} authentication for the next time?`,
+        biometryType,
+      );
+
     } catch (error) {
       console.error('Error:', error);
       Alert.alert(
