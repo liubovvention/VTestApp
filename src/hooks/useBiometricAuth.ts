@@ -11,7 +11,6 @@ const useBiometricAuth = () => {
       });
 
       if (success) {
-        Alert.alert('Success', 'Biometric authentication successful');
         return true;
       } else {
         Alert.alert(
