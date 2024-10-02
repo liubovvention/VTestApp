@@ -1,4 +1,3 @@
-import {useEffect, useState} from 'react';
 import DeviceInfo from 'react-native-device-info';
 import {Text, View} from 'react-native';
 import {useThemedStyles} from 'styles/commonStyles';

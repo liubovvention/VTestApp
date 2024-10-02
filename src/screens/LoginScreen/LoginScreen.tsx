@@ -8,13 +8,19 @@ import {validateEmail} from 'utils/validateUtil';
 import {StyledButton} from 'components';
 import user from 'data/user.json';
 import {ScreenNames, StackParamList} from 'types/navigation';
+import {useAppSelector} from 'src/hooks/useStore';
+import useBiometricAuth from 'hooks/useBiometricAuth';
+import {selectBiometrics, selectUser} from 'src/store/slices/auth/authSlice';
 import {useThemedStyles} from 'styles/commonStyles';
 import styles from 'src/screens/LoginScreen/LoginScreenStyles';
 
 export default function LoginScreen() {
   const navigation = useNavigation<NativeStackNavigationProp<StackParamList>>();
+  const {authenticate} = useBiometricAuth();
   const themedStyles = useThemedStyles();
   const {onLogin} = useActions();
+  const storedUser = useAppSelector(selectUser);
+  const isBiometrics = useAppSelector(selectBiometrics);
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [rememberMe, setRememberMe] = useState<boolean>(false);
@@ -29,12 +35,23 @@ export default function LoginScreen() {
     if (email === user.email && password === user.password) {
       const payload = {isLoggedIn: rememberMe, user: {email: email}};
       onLogin(payload);
-      navigation.navigate(ScreenNames.Home);
+      isBiometrics
+        ? navigation.navigate(ScreenNames.Home)
+        : navigation.navigate(ScreenNames.Biometrics);
       Alert.alert('Logged in successfuly!');
     } else {
       Alert.alert('Invalid email or password');
     }
   }, [email, password, rememberMe, navigation]);
+
+  const handleBioLogin = useCallback(async() => {
+    console.log('DEBUG bio login', storedUser);
+    if (!storedUser) return;
+    //const payload = {isLoggedIn: true, user: storedUser};
+    //onLogin(payload);
+    const isAuth = await authenticate();
+    if (isAuth) navigation.navigate(ScreenNames.Home)
+  }, [storedUser]);
 
   return (
     <View style={themedStyles.container}>
@@ -70,6 +87,13 @@ export default function LoginScreen() {
         onPress={handleLogin}
         styles={styles.button}
       />
+      {storedUser && isBiometrics && (
+        <StyledButton
+          label="Use Biometrcs"
+          onPress={handleBioLogin}
+          styles={styles.button}
+        />
+      )}
     </View>
   );
 }
