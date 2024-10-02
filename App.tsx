@@ -12,11 +12,12 @@ import {
   StyleSheet,
   useColorScheme,
 } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import store, {persistor} from 'store/store';
-import AppNavigation from 'navigation/AppNavigation';
+import {AuthProvider} from 'context/AuthContext';
+import TabNavigation from 'navigation/TabNavigation';
 import {lightColors, darkColors} from 'styles/themeColors';
 
 function App() {
@@ -33,10 +34,11 @@ function App() {
               isDarkMode ? darkColors.background : lightColors.background
             }
           />
-          <NavigationContainer>
-          <AppNavigation />
-          </NavigationContainer>
-          
+          <AuthProvider>
+            <NavigationContainer>
+              <TabNavigation initialRoute={'Home'} />
+            </NavigationContainer>
+          </AuthProvider>
         </SafeAreaView>
       </PersistGate>
     </Provider>

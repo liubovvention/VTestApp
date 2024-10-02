@@ -22,7 +22,7 @@ export default function BiometricScreen() {
             try {
               // Create & save publicKey for the real app
               onSetBiometrics();
-              navigation.navigate(ScreenNames.Weather);
+              navigation.navigate(ScreenNames.Login);
               Alert.alert(
                 'Success!',
                 `${biometryType} authentication enabled successfully!`,

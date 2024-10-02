@@ -1,35 +1,28 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
+import {ActivityIndicator, Alert, AppState, AppStateStatus} from 'react-native';
 import {
-  ActivityIndicator,
-  Alert,
-  AppState,
-  AppStateStatus,
-} from 'react-native';
-import {createNativeStackNavigator, NativeStackNavigationProp} from '@react-navigation/native-stack';
+  createNativeStackNavigator,
+  NativeStackNavigationProp,
+} from '@react-navigation/native-stack';
+import {useAuth} from 'context/AuthContext';
 import {useAppSelector} from 'hooks/useStore';
 import useBiometricAuth from 'hooks/useBiometricAuth';
-import TabNavigation from 'navigation/TabNavigation';
-import LoginNavigation from 'navigation/LoginNavigation';
 import {ScreenNames, StackParamList} from 'types/navigation';
-import {
-  selectBiometrics,
-  selectisLoggedIn,
-  selectUser,
-} from 'store/slices/auth/authSlice';
+import {selectBiometrics, selectUser} from 'store/slices/auth/authSlice';
+import {BiometricScreen, DetailsScreen, HomeScreen, LoginScreen} from 'screens';
 
 const Stack = createNativeStackNavigator<StackParamList>();
 
 const AppNavigation = () => {
   const navigation = useNavigation<NativeStackNavigationProp<StackParamList>>();
   const {authenticate} = useBiometricAuth();
-  const user = useAppSelector(selectUser);
+  const {initialAuth, user} = useAuth();
   const appState = useRef(AppState.currentState);
-  const [isAuthRequired, setIsAuthRequired] = useState(false);
   const isBiometrics = useAppSelector(selectBiometrics);
-  const isStoredLoggedIn = useAppSelector(selectisLoggedIn);
   const [isLoading, setIsLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAuthRequired, setIsAuthRequired] = useState(false);
 
   const handleAppStateChange = useCallback(
     async (nextAppState: AppStateStatus) => {
@@ -55,14 +48,13 @@ const AppNavigation = () => {
   );
 
   const checkLoginStatus = useCallback(async () => {
-    setIsLoading(true);
-    if (user && isStoredLoggedIn && isBiometrics) {
+    if (user && initialAuth && isBiometrics) {
       const isAuth = await authenticate();
       setIsLoggedIn(isAuth);
       setIsAuthRequired(true);
     }
     setIsLoading(false);
-  }, [user, isBiometrics, isStoredLoggedIn, authenticate]);
+  }, [user, isBiometrics, initialAuth, authenticate]);
 
   useEffect(() => {
     const subscription = AppState.addEventListener(
@@ -78,27 +70,31 @@ const AppNavigation = () => {
     checkLoginStatus();
   }, [checkLoginStatus]);
 
-  const getInitialRoute = useCallback((): keyof StackParamList => {
-    return isLoggedIn ? ScreenNames.Weather : ScreenNames.LoginFlow;
-  }, [isLoggedIn]);
-
   if (isLoading) {
     return <ActivityIndicator />;
   }
 
   return (
-      <Stack.Navigator initialRouteName={getInitialRoute()}>
-        <Stack.Screen
-          name={ScreenNames.LoginFlow}
-          children={() => <LoginNavigation initialRoute={ScreenNames.Login} />}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name={ScreenNames.Weather}
-          children={() => <TabNavigation initialRoute={ScreenNames.Weather} />}
-          options={{headerShown: false, headerLeft:() => null,}}
-        />
-      </Stack.Navigator>
+    <Stack.Navigator>
+      {isLoggedIn ? (
+        <>
+          <Stack.Screen
+            name={ScreenNames.Weather}
+            component={HomeScreen}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen name={ScreenNames.Details} component={DetailsScreen} />
+        </>
+      ) : (
+        <>
+          <Stack.Screen name={ScreenNames.Login} component={LoginScreen} />
+          <Stack.Screen
+            name={ScreenNames.Biometrics}
+            component={BiometricScreen}
+          />
+        </>
+      )}
+    </Stack.Navigator>
   );
 };
 
