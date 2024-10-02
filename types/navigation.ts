@@ -11,6 +11,7 @@ export enum ScreenNames {
   Logout = 'Log Out',
   Login = 'Log In',
   Biometrics = "Biometrics",
+  LoginFlow = 'LoginFlow',
 }
 
 export type StackParamList = {
@@ -23,4 +24,6 @@ export type StackParamList = {
   'Log Out': undefined;
   'App Info': undefined;
   Biometrics: undefined;
+  LoginFlow: undefined;
+  MainFlow: undefined;
 };

@@ -12,12 +12,11 @@ import {
   StyleSheet,
   useColorScheme,
 } from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import store, {persistor} from 'store/store';
-import TabNavigation from 'navigation/TabNavigation';
-import {ScreenNames} from 'types/navigation';
+import AppNavigation from 'navigation/AppNavigation';
 import {lightColors, darkColors} from 'styles/themeColors';
 
 function App() {
@@ -25,21 +24,22 @@ function App() {
   const styles = getStyles(isDarkMode);
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={
-          isDarkMode ? darkColors.background : lightColors.background
-        }
-      />
-      <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <SafeAreaView style={styles.safeArea}>
+          <StatusBar
+            barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+            backgroundColor={
+              isDarkMode ? darkColors.background : lightColors.background
+            }
+          />
           <NavigationContainer>
-            <TabNavigation initialRoute={ScreenNames.Weather} />
+          <AppNavigation />
           </NavigationContainer>
-        </PersistGate>
-      </Provider>
-    </SafeAreaView>
+          
+        </SafeAreaView>
+      </PersistGate>
+    </Provider>
   );
 }
 

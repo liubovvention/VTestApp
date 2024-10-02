@@ -36,7 +36,7 @@ export default function LoginScreen() {
       const payload = {isLoggedIn: rememberMe, user: {email: email}};
       onLogin(payload);
       isBiometrics
-        ? navigation.navigate(ScreenNames.Home)
+        ? navigation.navigate(ScreenNames.Weather)
         : navigation.navigate(ScreenNames.Biometrics);
       Alert.alert('Logged in successfuly!');
     } else {
@@ -45,13 +45,10 @@ export default function LoginScreen() {
   }, [email, password, rememberMe, navigation]);
 
   const handleBioLogin = useCallback(async() => {
-    console.log('DEBUG bio login', storedUser);
     if (!storedUser) return;
-    //const payload = {isLoggedIn: true, user: storedUser};
-    //onLogin(payload);
     const isAuth = await authenticate();
-    if (isAuth) navigation.navigate(ScreenNames.Home)
-  }, [storedUser]);
+    if (isAuth) navigation.navigate(ScreenNames.Weather)
+  }, [rememberMe, storedUser]);
 
   return (
     <View style={themedStyles.container}>

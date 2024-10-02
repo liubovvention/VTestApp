@@ -14,19 +14,6 @@ import {ScreenNames} from 'types/navigation';
 const Drawer = createDrawerNavigator();
 
 const SettingsNavigation = () => {
-  const user = useAppSelector(selectUser);
-  const isStoredLoggedIn = useAppSelector(selectisLoggedIn);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    const checkLoginStatus = async () => {
-      if (isStoredLoggedIn && user) {
-        setIsLoggedIn(true);
-      }
-    };
-
-    checkLoginStatus();
-  }, [isStoredLoggedIn, user]);
   return (
     <Drawer.Navigator initialRouteName={ScreenNames.Settings}>
       <Drawer.Screen
@@ -35,11 +22,7 @@ const SettingsNavigation = () => {
       />
       <Drawer.Screen name={ScreenNames.Info} component={InfoScreen} />
       <Drawer.Screen name={ScreenNames.Contacts} component={ContactsScreen} />
-      {isLoggedIn ? (
-        <Drawer.Screen name={ScreenNames.Logout} component={LogoutScreen} />
-      ) : (
-        <Drawer.Screen name={ScreenNames.Login} component={LoginScreen} />
-      )}
+      <Drawer.Screen name={ScreenNames.Logout} component={LogoutScreen} />
     </Drawer.Navigator>
   );
 };

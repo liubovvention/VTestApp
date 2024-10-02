@@ -4,7 +4,7 @@ import {ActivityIndicator, Alert, AppState, AppStateStatus} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import AppNavigation from 'navigation/AppNavigation';
+import MainNavigation from 'navigation/MainNavigation';
 import SettingsNavigation from 'navigation/SettingsNavigation';
 import {StackParamList, ScreenNames} from 'types/navigation';
 import {useAppSelector} from 'hooks/useStore';
@@ -33,56 +33,56 @@ const TabNavigation = ({initialRoute}: TabNavigationProps) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const handleAppStateChange = useCallback(
-    async (nextAppState: AppStateStatus) => {
-      if (
-        appState.current.match(/inactive|background/) &&
-        nextAppState === 'active'
-      ) {
-        if (isAuthRequired) {
-          const isAuth = await authenticate();
-          setIsLoggedIn(isAuth);
-          if (!isAuth) {
-            Alert.alert('Error', 'You need to authenticate to access the app');
-            navigation.reset({
-              index: 0,
-              routes: [{ name: ScreenNames.Login }],
-            });
-          }
-        }
-      }
-      appState.current = nextAppState;
-    },
-    [isAuthRequired, authenticate],
-  );
+  // const handleAppStateChange = useCallback(
+  //   async (nextAppState: AppStateStatus) => {
+  //     if (
+  //       appState.current.match(/inactive|background/) &&
+  //       nextAppState === 'active'
+  //     ) {
+  //       if (isAuthRequired) {
+  //         const isAuth = await authenticate();
+  //         setIsLoggedIn(isAuth);
+  //         if (!isAuth) {
+  //           Alert.alert('Error', 'You need to authenticate to access the app');
+  //           navigation.reset({
+  //             index: 0,
+  //             routes: [{ name: ScreenNames.Login }],
+  //           });
+  //         }
+  //       }
+  //     }
+  //     appState.current = nextAppState;
+  //   },
+  //   [isAuthRequired, authenticate],
+  // );
 
-  const checkLoginStatus = useCallback(async () => {
-    if (user && isStoredLoggedIn && isBiometrics) {
-      const isAuth = await authenticate();
-      setIsLoggedIn(isAuth);
-      setIsAuthRequired(true);
-    }
-    setIsLoading(false);
-  }, [user, isBiometrics, isStoredLoggedIn, authenticate]);
+  // const checkLoginStatus = useCallback(async () => {
+  //   if (user && isStoredLoggedIn && isBiometrics) {
+  //     const isAuth = await authenticate();
+  //     setIsLoggedIn(isAuth);
+  //     setIsAuthRequired(true);
+  //   }
+  //   setIsLoading(false);
+  // }, [user, isBiometrics, isStoredLoggedIn, authenticate]);
 
-  useEffect(() => {
-    checkLoginStatus();
-  }, [checkLoginStatus]);
+  // useEffect(() => {
+  //   checkLoginStatus();
+  // }, [checkLoginStatus]);
 
-  useEffect(() => {
-    const subscription = AppState.addEventListener('change', handleAppStateChange);
-    return () => {
-      subscription.remove(); 
-    };
-  }, [handleAppStateChange]);
+  // useEffect(() => {
+  //   const subscription = AppState.addEventListener('change', handleAppStateChange);
+  //   return () => {
+  //     subscription.remove(); 
+  //   };
+  // }, [handleAppStateChange]);
 
-  const getInitialRoute = useCallback((): keyof StackParamList => {
-    return isLoggedIn ? ScreenNames.Weather : ScreenNames.Login;
-  }, [isLoggedIn]);
+  // const getInitialRoute = useCallback((): keyof StackParamList => {
+  //   return isLoggedIn ? ScreenNames.Weather : ScreenNames.Login;
+  // }, [isLoggedIn]);
 
-  if (isLoading) {
-    return <ActivityIndicator />;
-  }
+  // if (isLoading) {
+  //   return <ActivityIndicator />;
+  // }
 
   return (
     <Tab.Navigator
@@ -109,7 +109,7 @@ const TabNavigation = ({initialRoute}: TabNavigationProps) => {
       })}>
       <Tab.Screen
         name={ScreenNames.Weather}
-        children={() => <AppNavigation initialRoute={getInitialRoute()} />}
+        children={() => <MainNavigation initialRoute={ScreenNames.Weather} />}
         options={{headerShown: false}}
       />
       <Tab.Screen
