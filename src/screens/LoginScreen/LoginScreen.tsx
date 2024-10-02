@@ -1,25 +1,28 @@
-import React, {useCallback, useEffect, useState} from 'react';
-import {View, Text, TextInput, Alert, StyleSheet, Switch} from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, {useCallback, useState} from 'react';
+import {View, Text, TextInput, Alert, Switch} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {
+  NativeStackNavigationProp,
+  NativeStackScreenProps,
+} from '@react-navigation/native-stack';
 import {useActions} from 'hooks/useActions';
 import {validateEmail} from 'utils/validateUtil';
 import {StyledButton} from 'components';
 import user from 'data/user.json';
+import {useAuth} from 'context/AuthContext';
+import {useAppSelector} from 'hooks/useStore';
+import {selectBiometrics} from 'store/slices/auth/authSlice';
 import {ScreenNames, StackParamList} from 'types/navigation';
-import {useAppSelector} from 'src/hooks/useStore';
-import useBiometricAuth from 'hooks/useBiometricAuth';
-import {selectBiometrics, selectUser} from 'src/store/slices/auth/authSlice';
 import {useThemedStyles} from 'styles/commonStyles';
 import styles from 'src/screens/LoginScreen/LoginScreenStyles';
 
+export type LoginProps = NativeStackScreenProps<StackParamList, 'Log In'>;
+
 export default function LoginScreen() {
+  const {setInitialAuth, user: storedUser} = useAuth();
   const navigation = useNavigation<NativeStackNavigationProp<StackParamList>>();
-  const {authenticate} = useBiometricAuth();
   const themedStyles = useThemedStyles();
   const {onLogin} = useActions();
-  const storedUser = useAppSelector(selectUser);
   const isBiometrics = useAppSelector(selectBiometrics);
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -36,7 +39,7 @@ export default function LoginScreen() {
       const payload = {isLoggedIn: rememberMe, user: {email: email}};
       onLogin(payload);
       isBiometrics
-        ? navigation.navigate(ScreenNames.Home)
+        ? setInitialAuth(true)
         : navigation.navigate(ScreenNames.Biometrics);
       Alert.alert('Logged in successfuly!');
     } else {
@@ -44,14 +47,12 @@ export default function LoginScreen() {
     }
   }, [email, password, rememberMe, navigation]);
 
-  const handleBioLogin = useCallback(async() => {
-    console.log('DEBUG bio login', storedUser);
+  const handleBioLogin = useCallback(async () => {
     if (!storedUser) return;
-    //const payload = {isLoggedIn: true, user: storedUser};
-    //onLogin(payload);
-    const isAuth = await authenticate();
-    if (isAuth) navigation.navigate(ScreenNames.Home)
-  }, [storedUser]);
+    const payload = {isLoggedIn: rememberMe, user: {email: storedUser.email}};
+    onLogin(payload);
+    setInitialAuth(true);
+  }, [rememberMe, email, storedUser]);
 
   return (
     <View style={themedStyles.container}>
