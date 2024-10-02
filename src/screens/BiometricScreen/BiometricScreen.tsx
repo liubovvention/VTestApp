@@ -22,11 +22,11 @@ export default function BiometricScreen() {
             try {
               // Create & save publicKey for the real app
               onSetBiometrics();
-              navigation.navigate(ScreenNames.Login);
               Alert.alert(
                 'Success!',
                 `${biometryType} authentication enabled successfully!`,
               );
+              navigation.navigate(ScreenNames.Login);
             } catch (error) {
               console.error('Keychain error:', error);
               Alert.alert(

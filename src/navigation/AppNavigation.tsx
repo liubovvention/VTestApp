@@ -48,6 +48,7 @@ const AppNavigation = () => {
   );
 
   const checkLoginStatus = useCallback(async () => {
+    setIsLoggedIn(false);
     if (user && initialAuth && isBiometrics) {
       const isAuth = await authenticate();
       setIsLoggedIn(isAuth);
