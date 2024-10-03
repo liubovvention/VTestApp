@@ -1,8 +1,7 @@
 import React from 'react';
 import {render, fireEvent} from '@testing-library/react-native';
-import ContactsScreen from '../../../src/screens/ContactsScreen/ContactsScreen';
-import {useThemedStyles} from '../../../src/styles/commonStyles';
-import {StyledButton} from 'components';
+import {ContactsScreen} from 'screens';
+import {useThemedStyles} from 'styles/commonStyles';
 import { Linking } from 'react-native';
 
 // Mock the dependencies
@@ -16,11 +15,11 @@ jest.mock('styles/commonStyles', () => ({
 
 jest.mock('components', () => ({
     StyledButton: jest.fn(({ onPress, label }) => {
-      const { TouchableOpacity, Text } = require('react-native');
+      const { Pressable, Text } = require('react-native');
       return (
-        <TouchableOpacity onPress={onPress}>
+        <Pressable onPress={onPress}>
           <Text>{label}</Text>
-        </TouchableOpacity>
+        </Pressable>
       );
     }),
   }));
