@@ -15,11 +15,12 @@ const StyledButton: React.FC<StyledButtonProps> = (
   const {label, icon, onPress, styles} = props;
   return (
     <Pressable
+      testID="styled-button"
       onPress={onPress}
       style={({pressed}) => [
-        ...(Array.isArray(styles) ? styles : styles ? [styles] : []),
         themedStyles.button,
         pressed ? themedStyles.buttonPressed : null,
+        ...(Array.isArray(styles) ? styles : styles ? [styles] : []),
       ]}>
       {label && <Text style={themedStyles.buttonLabel}>{label}</Text>}
     </Pressable>
