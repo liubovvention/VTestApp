@@ -13,8 +13,6 @@ jest.mock('styles/commonStyles', () => ({
   useThemedStyles: jest.fn(),
 }));
 
-
-
 describe('SettingsScreen', () => {
   it('should display logged in message when user is logged in', () => {
     // Mock the return value of useAppSelector to simulate logged-in user
