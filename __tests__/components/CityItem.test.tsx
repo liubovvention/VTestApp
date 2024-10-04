@@ -11,7 +11,7 @@ jest.mock('@react-navigation/native', () => ({
 jest.mock('react-native-vector-icons/FontAwesome', () => 'Icon');
 
 jest.mock('utils/tempUtils', () => ({
-  kelvinToFahrenheit: jest.fn((kelvin: number) => Math.round((kelvin - 273.15) * 9/5 + 32)), // Simple mock implementation
+  kelvinToFahrenheit: jest.fn((kelvin: number) => Math.round((kelvin - 273.15) * 9/5 + 32)),
 }));
 
 const mockedNavigate = jest.fn();
