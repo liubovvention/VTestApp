@@ -58,6 +58,7 @@ export default function LoginScreen() {
     <View style={themedStyles.container}>
       <Text style={[themedStyles.primaryText, styles.label]}>Email:</Text>
       <TextInput
+        testID="email-input"
         style={styles.input}
         value={email}
         onChangeText={setEmail}
@@ -67,6 +68,7 @@ export default function LoginScreen() {
       {error ? <Text style={styles.errorText}>{error}</Text> : null}
       <Text style={[themedStyles.primaryText, styles.label]}>Password:</Text>
       <TextInput
+        testID="password-input"
         style={styles.input}
         value={password}
         onChangeText={setPassword}
@@ -84,6 +86,7 @@ export default function LoginScreen() {
         </Text>
       </View>
       <StyledButton
+        testID="login-button"
         label="Login"
         onPress={handleLogin}
         styles={styles.button}
