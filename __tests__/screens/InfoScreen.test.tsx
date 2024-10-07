@@ -11,7 +11,7 @@ jest.mock('styles/commonStyles', () => ({
 
 jest.mock('react-native-device-info', () => ({
   getVersion: jest.fn(() => '1.0.0'),
-  getBuildNumber: jest.fn(() => '0001'), // Mocking getBuildNumber
+  getBuildNumber: jest.fn(() => '0001'), 
 }));
 
 describe('InfoScreen', () => {

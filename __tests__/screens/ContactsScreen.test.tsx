@@ -5,7 +5,6 @@ import {useThemedStyles} from 'styles/commonStyles';
 import { Linking } from 'react-native';
 import mockThemedStyles from '__mocks__/mockThemedStyles';
 
-// Mock the dependencies
 jest.mock('react-native/Libraries/Linking/Linking', () => ({
   openURL: jest.fn(),
 }));

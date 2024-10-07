@@ -66,7 +66,7 @@ describe('LoginScreen', () => {
 
     const {getByText, getByTestId} = render(<LoginScreen />);
     const emailInput = getByTestId('email-input');
-    const loginButton = getByTestId('login-button'); // Use test ID for the login button
+    const loginButton = getByTestId('login-button'); 
 
     fireEvent.changeText(emailInput, 'invalid-email');
     fireEvent.press(loginButton);
@@ -135,7 +135,7 @@ describe('LoginScreen', () => {
   it('should show an alert on incorrect credentials', async () => {
     (validateEmail as jest.Mock).mockReturnValueOnce(true); // Valid email
 
-    const {getByTestId, getByText} = render(<LoginScreen />);
+    const {getByTestId} = render(<LoginScreen />);
     const emailInput = getByTestId('email-input');
     const passwordInput = getByTestId('password-input');
     const loginButton = getByTestId('login-button');
