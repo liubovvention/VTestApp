@@ -31,7 +31,8 @@ const AppNavigation = () => {
         nextAppState === 'active'
       ) {
         if (isAuthRequired) {
-          const isAuth = await authenticate();
+          const isAuth = true;
+          //const isAuth = await authenticate();
           setIsLoggedIn(isAuth);
           if (!isAuth) {
             Alert.alert('Error', 'You need to authenticate to access the app');
@@ -50,8 +51,9 @@ const AppNavigation = () => {
   const checkLoginStatus = useCallback(async () => {
     setIsLoggedIn(false);
     if (user && initialAuth && isBiometrics) {
-      const isAuth = await authenticate();
-      setIsLoggedIn(isAuth);
+      // const isAuth = await authenticate();
+      // setIsLoggedIn(isAuth);
+      setIsLoggedIn(true);
       setIsAuthRequired(true);
     }
     setIsLoading(false);

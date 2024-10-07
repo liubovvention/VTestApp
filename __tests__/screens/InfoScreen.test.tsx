@@ -3,6 +3,7 @@ import DeviceInfo from 'react-native-device-info';
 import {render} from '@testing-library/react-native';
 import {InfoScreen} from 'screens';
 import {useThemedStyles} from 'styles/commonStyles';
+import mockThemedStyles from '__mocks__/mockThemedStyles';
 
 jest.mock('styles/commonStyles', () => ({
   useThemedStyles: jest.fn(),
@@ -14,10 +15,6 @@ jest.mock('react-native-device-info', () => ({
 }));
 
 describe('InfoScreen', () => {
-  const mockThemedStyles = {
-    container: {padding: 10},
-    title: {fontSize: 20},
-  };
 
   beforeEach(() => {
     jest.clearAllMocks();

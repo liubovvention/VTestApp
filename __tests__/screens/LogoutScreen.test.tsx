@@ -5,6 +5,7 @@ import {LogoutScreen} from 'screens';
 import {useAuth} from 'context/AuthContext';
 import {useActions} from 'hooks/useActions';
 import {useThemedStyles} from 'styles/commonStyles';
+import mockThemedStyles from '__mocks__/mockThemedStyles';
 
 jest.mock('context/AuthContext', () => ({
   useAuth: jest.fn(),
@@ -22,10 +23,6 @@ jest.mock('styles/commonStyles', () => ({
 jest.spyOn(Alert, 'alert').mockImplementation(jest.fn());
 
 describe('LogoutScreen', () => {
-  const mockThemedStyles = {
-    container: {padding: 10},
-    title: {fontSize: 20},
-  };
 
   beforeEach(() => {
     jest.clearAllMocks();

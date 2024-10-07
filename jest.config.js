@@ -17,6 +17,7 @@ module.exports = {
     ...pathsToModuleNameMapper(compilerOptions.paths || {}, {
       prefix: '<rootDir>/',
     }),
+    '^__mocks__/(.*)$': '<rootDir>/__mocks__/$1',
     '^types/(.*)$': '<rootDir>/types/$1',
     '^data/(.*)$': '<rootDir>/data/$1',
     '^react-native-vector-icons/(.*)$': '<rootDir>/__mocks__/react-native-vector-icons.js', // mock the icons

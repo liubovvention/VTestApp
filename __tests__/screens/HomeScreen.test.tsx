@@ -5,6 +5,8 @@ import {HomeScreen} from 'screens';
 import {useGetCitiesWeatherData} from 'hooks/useGetCitiesWeatherData';
 import {NavigationContainer} from '@react-navigation/native';
 import {useThemedStyles} from 'styles/commonStyles';
+import {mockCitiesWeather} from '__mocks__/mockData';
+import mockThemedStyles from '__mocks__/mockThemedStyles';
 
 // Mock the useGetCitiesWeatherData hook
 jest.mock('hooks/useGetCitiesWeatherData');
@@ -15,10 +17,6 @@ jest.mock('styles/commonStyles', () => ({
 
 describe('HomeScreen', () => {
   const mockedUseGetCitiesWeatherData = useGetCitiesWeatherData as jest.Mock;
-  const mockThemedStyles = {
-    container: {padding: 10},
-    text: {fontSize: 14},
-  };
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -58,11 +56,6 @@ describe('HomeScreen', () => {
   });
 
   it('displays the list of cities when data is loaded', () => {
-    const mockCitiesWeather = [
-      {city: 'Kyiv', temp: 25, descr: 'Sunny', icon: 'sunny'},
-      {city: 'Vilnius', temp: 20, descr: 'Cloudy', icon: 'cloudy'},
-    ];
-
     mockedUseGetCitiesWeatherData.mockReturnValue({
       citiesWeather: mockCitiesWeather,
       loading: false,

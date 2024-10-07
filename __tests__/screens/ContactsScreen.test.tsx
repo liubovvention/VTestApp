@@ -3,6 +3,7 @@ import {render, fireEvent} from '@testing-library/react-native';
 import {ContactsScreen} from 'screens';
 import {useThemedStyles} from 'styles/commonStyles';
 import { Linking } from 'react-native';
+import mockThemedStyles from '__mocks__/mockThemedStyles';
 
 // Mock the dependencies
 jest.mock('react-native/Libraries/Linking/Linking', () => ({
@@ -25,12 +26,6 @@ jest.mock('components', () => ({
   }));
 
 describe('ContactsScreen', () => {
-  const mockThemedStyles = {
-    container: {padding: 10},
-    title: {fontSize: 20},
-    button: {padding: 10},
-  };
-
   beforeEach(() => {
     jest.clearAllMocks();
     (useThemedStyles as jest.Mock).mockReturnValue(mockThemedStyles);

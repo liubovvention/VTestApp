@@ -9,6 +9,8 @@ import {validateEmail} from 'utils/validateUtil';
 import {Alert} from 'react-native';
 import {useThemedStyles} from 'styles/commonStyles';
 import {selectBiometrics} from 'store/slices/auth/authSlice';
+import {mockStoredUser} from '__mocks__/mockData';
+import mockThemedStyles from '__mocks__/mockThemedStyles';
 
 jest.mock('styles/commonStyles', () => ({
   useThemedStyles: jest.fn(),
@@ -41,12 +43,6 @@ const mockOnLogin = jest.fn();
 const mockSetInitialAuth = jest.fn();
 
 describe('LoginScreen', () => {
-  const mockStoredUser = {email: 'test@example.com'};
-  const mockThemedStyles = {
-    container: {padding: 10},
-    primaryText: {color: 'black'},
-  };
-
   beforeEach(() => {
     jest.clearAllMocks();
     (useThemedStyles as jest.Mock).mockReturnValue(mockThemedStyles);
@@ -56,7 +52,7 @@ describe('LoginScreen', () => {
       user: mockStoredUser,
     });
     (useActions as jest.Mock).mockReturnValue({onLogin: mockOnLogin});
-    (useAppSelector as jest.Mock).mockImplementation((selector) => {
+    (useAppSelector as jest.Mock).mockImplementation(selector => {
       if (selector === selectBiometrics) {
         return false; // Mock biometrics as disabled for this test
       }
@@ -102,7 +98,7 @@ describe('LoginScreen', () => {
   });
 
   it('should show biometrics button if user is stored and biometrics is enabled', () => {
-    (useAppSelector as jest.Mock).mockImplementation((selector) => {
+    (useAppSelector as jest.Mock).mockImplementation(selector => {
       if (selector === selectBiometrics) {
         return true; // Mock biometrics as enabled for this test
       }
@@ -115,7 +111,7 @@ describe('LoginScreen', () => {
   });
 
   it('should use biometrics login when biometrics button is pressed', async () => {
-    (useAppSelector as jest.Mock).mockImplementation((selector) => {
+    (useAppSelector as jest.Mock).mockImplementation(selector => {
       if (selector === selectBiometrics) {
         return true; // Ensure biometrics are enabled
       }
@@ -130,7 +126,7 @@ describe('LoginScreen', () => {
     await waitFor(() => {
       expect(mockOnLogin).toHaveBeenCalledWith({
         isLoggedIn: false,
-        user: {email: 'test@example.com'},
+        user: {email: 'leodance@gmail.com'},
       });
       expect(mockSetInitialAuth).toHaveBeenCalledWith(true);
     });
