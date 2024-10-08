@@ -1,5 +1,7 @@
 import {Pressable, StyleProp, Text, ViewStyle} from 'react-native';
+import {LinearGradient} from 'expo-linear-gradient';
 import {useThemedStyles} from 'styles/commonStyles';
+import {blueColors} from 'styles/themeColors';
 
 export type StyledButtonProps<T extends any[] = any[]> = {
   testID?: string;
@@ -15,16 +17,22 @@ const StyledButton: React.FC<StyledButtonProps> = (
   const themedStyles = useThemedStyles();
   const {label, icon, onPress, styles, testID} = props;
   return (
-    <Pressable
-      testID={testID ? testID : "styled-button"}
-      onPress={onPress}
-      style={({pressed}) => [
-        themedStyles.button,
-        pressed ? themedStyles.buttonPressed : null,
+    <LinearGradient
+      colors={[blueColors.blue25, blueColors.blue100]}
+      style={[
+        themedStyles.gradientWrapper,
         ...(Array.isArray(styles) ? styles : styles ? [styles] : []),
       ]}>
-      {label && <Text style={themedStyles.buttonLabel}>{label}</Text>}
-    </Pressable>
+      <Pressable
+        testID={testID ? testID : 'styled-button'}
+        onPress={onPress}
+        style={({pressed}) => [
+          themedStyles.button,
+          pressed ? themedStyles.buttonPressed : null,
+        ]}>
+        {label && <Text style={themedStyles.buttonLabel}>{label}</Text>}
+      </Pressable>
+    </LinearGradient>
   );
 };
 
