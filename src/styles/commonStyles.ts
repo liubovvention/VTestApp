@@ -26,8 +26,12 @@ export const useThemedStyles = () => {
     secondaryText: {
       color: colors.secondary,
     },
+    gradientWrapper: {
+      borderRadius: 10,
+      height: 45,
+    },
     button: {
-      backgroundColor: colors.buttonBackground,
+      flex: 1,
       paddingVertical: 10,
       paddingHorizontal: 20,
       borderRadius: 10,
