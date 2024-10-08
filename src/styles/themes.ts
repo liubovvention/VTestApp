@@ -16,6 +16,10 @@ export const lightTheme = {
     lg: 8,
     xl: 12,
   },
+  stacks: {
+    spacing: 4,
+    debug: false,
+  },
 } as const;
 
 export const darkTheme = {
@@ -33,5 +37,9 @@ export const darkTheme = {
     md: 4,
     lg: 8,
     xl: 12,
+  },
+  stacks: {
+    spacing: 4,
+    debug: false,
   },
 } as const;

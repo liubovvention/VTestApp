@@ -3,6 +3,7 @@
   "compilerOptions": {
     "baseUrl": "./", 
     "paths": {
+      "@grapp/stacks": ["node_modules/@grapp/stacks"],
       "src/*": ["src/*"],
       "types/*": ["types/*"],
       "data/*": ["data/*"],
