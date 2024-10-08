@@ -5,7 +5,8 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {kelvinToFahrenheit} from 'utils/tempUtils';
 import {ScreenNames, StackParamList} from 'types/navigation';
 import {CityWeather} from 'types/weather';
-import {useThemedStyles} from 'styles/commonStyles';
+import {useStyles} from 'react-native-unistyles';
+import globalStyles from 'styles/globalStyles';
 import styles from 'src/components/CityItem/CityItemStyles';
 
 interface CityItemProps {
@@ -14,7 +15,7 @@ interface CityItemProps {
 }
 
 const CityItem: React.FC<CityItemProps> = ({item, isPressable = true}) => {
-  const themedStyles = useThemedStyles();
+  const {styles: themedStyles} = useStyles(globalStyles);
   const navigation = useNavigation<NativeStackNavigationProp<StackParamList>>();
   const iconUrl = `https://openweathermap.org/img/wn/${item.icon}.png`;
   return (

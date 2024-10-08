@@ -13,7 +13,8 @@ import {useAuth} from 'context/AuthContext';
 import {useAppSelector} from 'hooks/useStore';
 import {selectBiometrics} from 'store/slices/auth/authSlice';
 import {ScreenNames, StackParamList} from 'types/navigation';
-import {useThemedStyles} from 'styles/commonStyles';
+import {useStyles} from 'react-native-unistyles';
+import globalStyles from 'styles/globalStyles';
 import styles from 'src/screens/LoginScreen/LoginScreenStyles';
 
 export type LoginProps = NativeStackScreenProps<StackParamList, 'Log In'>;
@@ -21,7 +22,7 @@ export type LoginProps = NativeStackScreenProps<StackParamList, 'Log In'>;
 export default function LoginScreen() {
   const {setInitialAuth, user: storedUser} = useAuth();
   const navigation = useNavigation<NativeStackNavigationProp<StackParamList>>();
-  const themedStyles = useThemedStyles();
+  const {styles: themedStyles} = useStyles(globalStyles);
   const {onLogin} = useActions();
   const isBiometrics = useAppSelector(selectBiometrics);
   const [email, setEmail] = useState<string>('');

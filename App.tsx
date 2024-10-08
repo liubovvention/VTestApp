@@ -19,6 +19,7 @@ import store, {persistor} from 'store/store';
 import {AuthProvider} from 'context/AuthContext';
 import TabNavigation from 'navigation/TabNavigation';
 import {lightColors, darkColors} from 'styles/themeColors';
+import 'styles/unistyles';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';

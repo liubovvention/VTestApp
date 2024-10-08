@@ -5,13 +5,15 @@ import {Alert, StyleSheet, Text, View} from 'react-native';
 import ReactNativeBiometrics, {BiometryTypes} from 'react-native-biometrics';
 import {useActions} from 'hooks/useActions';
 import {StyledButton} from 'components';
-import {useThemedStyles, width} from 'styles/commonStyles';
+import {useStyles} from 'react-native-unistyles';
+import {UnistylesRuntime} from 'react-native-unistyles';
+import globalStyles from 'styles/globalStyles';
 import {ScreenNames, StackParamList} from 'types/navigation';
 
 export default function BiometricScreen() {
   const navigation = useNavigation<NativeStackNavigationProp<StackParamList>>();
   const {onSetBiometrics} = useActions();
-  const themedStyles = useThemedStyles();
+  const {styles: themedStyles} = useStyles(globalStyles);
 
   const showAlert = useCallback(
     (title: string, message: string, biometryType: string) => {
@@ -100,7 +102,7 @@ export default function BiometricScreen() {
 
 const styles = StyleSheet.create({
   button: {
-    width: width / 2,
+    width: UnistylesRuntime.screen.width / 2,
     marginVertical: 10,
   },
 });

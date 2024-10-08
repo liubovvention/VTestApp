@@ -1,11 +1,12 @@
 import {Text, View} from 'react-native';
-import {useThemedStyles} from 'styles/commonStyles';
-import styles from 'src/screens/SettingsScreen/SettingsScreenStyles';
+import {useStyles} from 'react-native-unistyles';
 import {useAppSelector} from 'hooks/useStore';
 import {selectUser} from 'store/slices/auth/authSlice';
+import globalStyles from 'styles/globalStyles';
+import styles from 'src/screens/SettingsScreen/SettingsScreenStyles';
 
 export default function SettingsScreen() {
-  const themedStyles = useThemedStyles();
+  const {styles: themedStyles} = useStyles(globalStyles);
   const user = useAppSelector(selectUser);
   return (
     <View style={themedStyles.container}>

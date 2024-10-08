@@ -1,11 +1,12 @@
 import {useCallback} from 'react';
 import {Linking, Text, View} from 'react-native';
 import {StyledButton} from 'components';
-import {useThemedStyles} from 'styles/commonStyles';
+import {useStyles} from 'react-native-unistyles';
+import globalStyles from 'styles/globalStyles';
 import styles from 'src/screens/ContactsScreen/ContactsScreenStyles';
 
 export default function ContactsScreen() {
-  const themedStyles = useThemedStyles();
+  const {styles: themedStyles} = useStyles(globalStyles);
 
   const handleButtonPress = useCallback((chanel: string) => {
     let action;

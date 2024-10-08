@@ -1,10 +1,11 @@
 import DeviceInfo from 'react-native-device-info';
 import {Text, View} from 'react-native';
-import {useThemedStyles} from 'styles/commonStyles';
+import {useStyles} from 'react-native-unistyles';
+import globalStyles from 'styles/globalStyles';
 import styles from 'src/screens/InfoScreen/InfoScreenStyles';
 
 export default function InfoScreen() {
-  const themedStyles = useThemedStyles();
+  const {styles: themedStyles} = useStyles(globalStyles);
   const version = DeviceInfo.getVersion();
   const build = DeviceInfo.getBuildNumber();
 
