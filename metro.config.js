@@ -17,6 +17,7 @@ const config = {
         'components': path.resolve(__dirname, './src/components'),
         'navigation': path.resolve(__dirname, './src/navigation'),
         'hooks': path.resolve(__dirname, './src/hooks'),
+        'layout': path.resolve(__dirname, './src/layout'),
         'screens': path.resolve(__dirname, './src/screens'),
         'services': path.resolve(__dirname, './src/services'),
         'store': path.resolve(__dirname, './src/store'),

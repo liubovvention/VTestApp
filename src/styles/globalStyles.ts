@@ -1,13 +1,15 @@
 import {createStyleSheet} from 'react-native-unistyles';
-import {UnistylesRuntime} from 'react-native-unistyles';
 import {blueColors} from 'styles/themeColors';
 
 const globalStyles = createStyleSheet(theme => ({
+  safeArea: {
+    flex: 1,
+  },
+  screen: {
+    backgroundColor: theme.colors.background,
+  },
   container: {
     flex: 1,
-    width: UnistylesRuntime.screen.width,
-    height: UnistylesRuntime.screen.height - 150,
-    backgroundColor: theme.colors.background,
     justifyContent: 'center',
     alignItems: 'center',
   },

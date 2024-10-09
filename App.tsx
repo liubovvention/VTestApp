@@ -15,15 +15,18 @@ import {
 import {NavigationContainer} from '@react-navigation/native';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
+import { useStyles } from 'react-native-unistyles';
 import store, {persistor} from 'store/store';
 import {AuthProvider} from 'context/AuthContext';
 import TabNavigation from 'navigation/TabNavigation';
+import {Screen} from 'src/layout';
 import {lightColors, darkColors} from 'styles/themeColors';
 import 'styles/unistyles';
+import globalStyles from 'src/styles/globalStyles';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
-  const styles = getStyles(isDarkMode);
+  const {styles} = useStyles(globalStyles);
 
   return (
     <Provider store={store}>
@@ -35,25 +38,17 @@ function App() {
               isDarkMode ? darkColors.background : lightColors.background
             }
           />
-          <AuthProvider>
-            <NavigationContainer>
-              <TabNavigation initialRoute={'Home'} />
-            </NavigationContainer>
-          </AuthProvider>
+          <Screen>
+            <AuthProvider>
+              <NavigationContainer>
+                <TabNavigation initialRoute={'Home'} />
+              </NavigationContainer>
+            </AuthProvider>
+          </Screen>
         </SafeAreaView>
       </PersistGate>
     </Provider>
   );
 }
-
-const getStyles = (isDarkMode: boolean) =>
-  StyleSheet.create({
-    safeArea: {
-      backgroundColor: isDarkMode
-        ? darkColors.background
-        : lightColors.background,
-      flex: 1,
-    },
-  });
 
 export default App;
