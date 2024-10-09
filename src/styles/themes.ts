@@ -1,5 +1,20 @@
 import * as colors from 'styles/themeColors';
 
+enum Margins {
+  sm = 2,
+  md = 4,
+  lg = 8,
+  xl = 12,
+}
+
+const common = {
+  margins: Margins,
+  stacks: {
+    spacing: 4,
+    debug: false,
+  },
+}
+
 export const lightTheme = {
   colors: {
     background: colors.basicColors.white,
@@ -10,16 +25,7 @@ export const lightTheme = {
     buttonBackground: colors.blueColors.blue75,
     buttonText: colors.basicColors.white,
   },
-  margins: {
-    sm: 2,
-    md: 4,
-    lg: 8,
-    xl: 12,
-  },
-  stacks: {
-    spacing: 4,
-    debug: false,
-  },
+  ...common,
 } as const;
 
 export const darkTheme = {
@@ -32,14 +38,5 @@ export const darkTheme = {
     buttonBackground: colors.blueColors.blue75,
     buttonText: colors.basicColors.white,
   },
-  margins: {
-    sm: 2,
-    md: 4,
-    lg: 8,
-    xl: 12,
-  },
-  stacks: {
-    spacing: 4,
-    debug: false,
-  },
+  ...common,
 } as const;
