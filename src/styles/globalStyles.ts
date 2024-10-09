@@ -2,11 +2,13 @@ import {createStyleSheet} from 'react-native-unistyles';
 import {blueColors} from 'styles/themeColors';
 
 const globalStyles = createStyleSheet(theme => ({
-  screen: {
+  screen:{
+    flex: 1,
     backgroundColor: theme.colors.background,
   },
   container: {
     flex: 1,
+    backgroundColor: theme.colors.background,
     justifyContent: 'center',
     alignItems: 'center',
   },

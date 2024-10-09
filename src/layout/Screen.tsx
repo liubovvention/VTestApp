@@ -41,14 +41,12 @@ const Screen = (props: ScreenProps) => {
     resolveResponsiveProp(topInset) ?? divide(UnistylesRuntime.insets.top);
   const paddingBottom =
     resolveResponsiveProp(bottomInset) ?? divide(UnistylesRuntime.insets.bottom);
-  const {styles} = useStyles(globalStyles);
 
   return (
     <Context.Provider value={{paddingX: resolveResponsiveProp(paddingX)}}>
       <Rows
         paddingTop={paddingTop}
         paddingBottom={paddingBottom}
-        style={styles.screen}
         {...rest}>
         {children}
       </Rows>
@@ -58,7 +56,8 @@ const Screen = (props: ScreenProps) => {
 
 const ContentComponent: React.FC<Props> = (props) => {
   const {paddingX} = useScreen();
-  return <Box paddingX={paddingX} {...props} />;
+  const {styles} = useStyles(globalStyles);
+  return <Box paddingX={paddingX} style={styles.screen} {...props} />;
 };
 
 const Content = Row.from(ContentComponent);
