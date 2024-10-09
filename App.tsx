@@ -14,7 +14,6 @@ import {PersistGate} from 'redux-persist/integration/react';
 import store, {persistor} from 'store/store';
 import {AuthProvider} from 'context/AuthContext';
 import TabNavigation from 'navigation/TabNavigation';
-import {Screen} from 'src/layout';
 import {lightColors, darkColors} from 'styles/themeColors';
 import 'styles/unistyles';
 
@@ -31,13 +30,12 @@ function App() {
               isDarkMode ? darkColors.background : lightColors.background
             }
           />
-          <Screen bottomInset={0}>
-            <AuthProvider>
-              <NavigationContainer>
-                <TabNavigation initialRoute={'Home'} />
-              </NavigationContainer>
-            </AuthProvider>
-          </Screen>
+
+          <AuthProvider>
+            <NavigationContainer>
+              <TabNavigation initialRoute={'Home'} />
+            </NavigationContainer>
+          </AuthProvider>
         </SafeAreaProvider>
       </PersistGate>
     </Provider>

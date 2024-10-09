@@ -1,5 +1,6 @@
 import {useCallback} from 'react';
 import {Linking, Text, View} from 'react-native';
+import {Screen} from 'src/layout';
 import {StyledButton} from 'components';
 import {useStyles} from 'react-native-unistyles';
 import globalStyles from 'styles/globalStyles';
@@ -28,7 +29,7 @@ export default function ContactsScreen() {
   }, []);
 
   return (
-    <View style={themedStyles.container}>
+    <Screen.Content style={themedStyles.container}>
       <Text style={themedStyles.title}>Contact Our Support Team</Text>
       <StyledButton
         onPress={() => handleButtonPress('email')}
@@ -45,6 +46,6 @@ export default function ContactsScreen() {
         label="Via SMS"
         styles={styles.button}
       />
-    </View>
+    </Screen.Content>
   );
 }
