@@ -1,5 +1,6 @@
 import {FlatList, Text, View} from 'react-native';
 import {useGetCitiesWeatherData} from 'hooks/useGetCitiesWeatherData';
+import { Screen } from 'src/layout';
 import {CityItem} from 'components';
 import citiesList from 'data/citiesList.json';
 import {useStyles} from 'react-native-unistyles';
@@ -10,7 +11,7 @@ export default function HomeScreen() {
   const {citiesWeather, loading, error} = useGetCitiesWeatherData(citiesList);
 
   return (
-    <View style={themedStyles.container}>
+    <Screen.Content>
       {loading && <Text style={themedStyles.text}>Loading...</Text>}
       {error && <Text style={themedStyles.text}>Error: {error}</Text>}
       {citiesWeather && (
@@ -20,6 +21,6 @@ export default function HomeScreen() {
           keyExtractor={item => item.city}
         />
       )}
-    </View>
+    </Screen.Content>
   );
 }

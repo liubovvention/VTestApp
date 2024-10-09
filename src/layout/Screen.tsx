@@ -1,8 +1,10 @@
 import * as React from 'react';
 import {UnistylesRuntime, useStyles} from 'react-native-unistyles';
-import {Platform} from 'react-native';
 import {
+  Box,
   ResponsiveProp,
+  Row,
+  RowProps,
   Rows,
   RowsProps,
   useResponsiveProp,
@@ -14,6 +16,8 @@ type ContextProps = {
   readonly paddingX: number;
 };
 
+type Props = React.PropsWithChildren<Omit<RowProps, 'paddingX'>>;
+
 type ScreenProps = Omit<RowsProps, 'paddingTop' | 'paddingBottom'> & {
   readonly topInset?: ResponsiveProp<number>;
   readonly bottomInset?: ResponsiveProp<number>;
@@ -23,18 +27,20 @@ const Context = React.createContext<ContextProps>({
   paddingX: 4,
 });
 
+const useScreen = () => {
+  return React.useContext(Context);
+};
+
 const Screen = (props: ScreenProps) => {
   const {children, paddingX = 4, topInset, bottomInset, ...rest} = props;
 
   const {divide} = useSpacingHelpers();
-  const isIOS = Platform.OS === 'ios';
 
   const resolveResponsiveProp = useResponsiveProp();
   const paddingTop =
-    resolveResponsiveProp(topInset) ?? isIOS ? 0 : divide(UnistylesRuntime.insets.top);
+    resolveResponsiveProp(topInset) ?? divide(UnistylesRuntime.insets.top);
   const paddingBottom =
-    resolveResponsiveProp(bottomInset) ??
-    isIOS ? 0 : divide(UnistylesRuntime.insets.bottom);
+    resolveResponsiveProp(bottomInset) ?? divide(UnistylesRuntime.insets.bottom);
   const {styles} = useStyles(globalStyles);
 
   return (
@@ -49,5 +55,14 @@ const Screen = (props: ScreenProps) => {
     </Context.Provider>
   );
 };
+
+const ContentComponent: React.FC<Props> = (props) => {
+  const {paddingX} = useScreen();
+  return <Box paddingX={paddingX} {...props} />;
+};
+
+const Content = Row.from(ContentComponent);
+
+Screen.Content = Content;
 
 export default Screen;

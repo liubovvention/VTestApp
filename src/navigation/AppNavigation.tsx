@@ -82,11 +82,18 @@ const AppNavigation = () => {
       {isLoggedIn ? (
         <>
           <Stack.Screen
-            name={ScreenNames.Weather}
+            name={ScreenNames.Home}
             component={HomeScreen}
             options={{headerShown: false}}
           />
-          <Stack.Screen name={ScreenNames.Details} component={DetailsScreen} />
+          <Stack.Screen
+            name={ScreenNames.Details}
+            component={DetailsScreen}
+            options={{
+              //headerShown: false,
+              headerBackVisible: true,
+            }}
+          />
         </>
       ) : (
         <>
