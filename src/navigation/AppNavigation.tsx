@@ -10,6 +10,7 @@ import {useAppSelector} from 'hooks/useStore';
 import useBiometricAuth from 'hooks/useBiometricAuth';
 import {ScreenNames, StackParamList} from 'types/navigation';
 import {selectBiometrics, selectUser} from 'store/slices/auth/authSlice';
+import {Screen} from 'src/layout';
 import {BiometricScreen, DetailsScreen, HomeScreen, LoginScreen} from 'screens';
 
 const Stack = createNativeStackNavigator<StackParamList>();
@@ -78,15 +79,19 @@ const AppNavigation = () => {
   }
 
   return (
+    <Screen bottomInset={0}>
     <Stack.Navigator>
       {isLoggedIn ? (
         <>
           <Stack.Screen
-            name={ScreenNames.Weather}
+            name={ScreenNames.Home}
             component={HomeScreen}
             options={{headerShown: false}}
           />
-          <Stack.Screen name={ScreenNames.Details} component={DetailsScreen} />
+          <Stack.Screen
+            name={ScreenNames.Details}
+            component={DetailsScreen}
+          />
         </>
       ) : (
         <>
@@ -98,6 +103,7 @@ const AppNavigation = () => {
         </>
       )}
     </Stack.Navigator>
+    </Screen>
   );
 };
 

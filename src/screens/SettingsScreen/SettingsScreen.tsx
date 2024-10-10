@@ -1,14 +1,16 @@
 import {Text, View} from 'react-native';
-import {useThemedStyles} from 'styles/commonStyles';
-import styles from 'src/screens/SettingsScreen/SettingsScreenStyles';
+import {useStyles} from 'react-native-unistyles';
 import {useAppSelector} from 'hooks/useStore';
 import {selectUser} from 'store/slices/auth/authSlice';
+import {Screen} from 'src/layout';
+import globalStyles from 'styles/globalStyles';
+import styles from 'src/screens/SettingsScreen/SettingsScreenStyles';
 
 export default function SettingsScreen() {
-  const themedStyles = useThemedStyles();
+  const {styles: themedStyles} = useStyles(globalStyles);
   const user = useAppSelector(selectUser);
   return (
-    <View style={themedStyles.container}>
+    <Screen.Content style={themedStyles.container}>
       {user ? (
         <Text style={[styles.info, themedStyles.text]}>Hey, {user.email}, you're successfuly logged in</Text>
       ) : (
@@ -19,6 +21,6 @@ export default function SettingsScreen() {
       <Text style={[styles.info, themedStyles.text]}>
         Use the menu to explore your options
       </Text>
-    </View>
+    </Screen.Content>
   );
 }

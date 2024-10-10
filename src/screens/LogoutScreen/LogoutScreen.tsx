@@ -1,12 +1,14 @@
 import {useEffect} from 'react';
-import {Alert, Text, View} from 'react-native';
+import {Alert, Text} from 'react-native';
 import {useAuth} from 'context/AuthContext';
 import {useActions} from 'hooks/useActions';
-import {useThemedStyles} from 'styles/commonStyles';
+import {useStyles} from 'react-native-unistyles';
+import {Screen} from 'layout';
+import globalStyles from 'styles/globalStyles';
 
 export default function LogoutScreen() {
   const {setInitialAuth} = useAuth();
-  const themedStyles = useThemedStyles();
+  const {styles: themedStyles} = useStyles(globalStyles);
   const {onLogout} = useActions();
 
   useEffect(() => {
@@ -20,8 +22,8 @@ export default function LogoutScreen() {
   }, []);
 
   return (
-    <View style={themedStyles.container}>
+    <Screen.Content style={themedStyles.container}>
       <Text style={themedStyles.title}>You're successfully logged out...</Text>
-    </View>
+    </Screen.Content>
   );
 }

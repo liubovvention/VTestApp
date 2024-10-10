@@ -2,6 +2,7 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {Text, View} from 'react-native';
 import {StackParamList} from 'types/navigation';
 import {CityItem} from 'components';
+import {Screen} from 'src/layout';
 import styles from 'src/screens/DetailsScreen/DetailsScreenStyles';
 
 type DetailsProps = NativeStackScreenProps<StackParamList, 'Details'>;
@@ -10,7 +11,7 @@ const DetailsScreen: React.FC<DetailsProps> = ({route}) => {
   const {humidity, wspeed, pressure, cloud} = route.params;
 
   return (
-    <View style={styles.wrapper}>
+    <Screen.Content>
       <CityItem item={route.params} isPressable={false} />
       <View style={styles.container}>
         <View style={styles.itemRow}>
@@ -30,7 +31,7 @@ const DetailsScreen: React.FC<DetailsProps> = ({route}) => {
           <Text style={styles.value}>{cloud}%</Text>
         </View>
       </View>
-    </View>
+    </Screen.Content>
   );
 };
 

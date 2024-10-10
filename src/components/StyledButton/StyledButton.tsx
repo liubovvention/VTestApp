@@ -1,6 +1,7 @@
 import {Pressable, StyleProp, Text, ViewStyle} from 'react-native';
 import {LinearGradient} from 'expo-linear-gradient';
-import {useThemedStyles} from 'styles/commonStyles';
+import {useStyles} from 'react-native-unistyles';
+import globalStyles from 'styles/globalStyles';
 import {blueColors} from 'styles/themeColors';
 
 export type StyledButtonProps<T extends any[] = any[]> = {
@@ -14,7 +15,7 @@ export type StyledButtonProps<T extends any[] = any[]> = {
 const StyledButton: React.FC<StyledButtonProps> = (
   props: StyledButtonProps,
 ) => {
-  const themedStyles = useThemedStyles();
+  const {styles: themedStyles} = useStyles(globalStyles);
   const {label, icon, onPress, styles, testID} = props;
   return (
     <LinearGradient
