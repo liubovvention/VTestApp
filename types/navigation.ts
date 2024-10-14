@@ -3,14 +3,15 @@ import {CityWeather} from 'types/weather';
 export enum ScreenNames {
   Home = 'Home',
   Weather = 'Weather',
-  Details = 'Details', 
+  Details = 'Details',
   Settings = 'Settings',
   GeneralSettings = 'General Settings',
   Info = 'App Info',
   Contacts = 'Contacts',
   Logout = 'Log Out',
   Login = 'Log In',
-  Biometrics = "Biometrics",
+  Biometrics = 'Biometrics',
+  Option = 'Add Option',
 }
 
 export type StackParamList = {
@@ -23,4 +24,5 @@ export type StackParamList = {
   'Log Out': undefined;
   'App Info': undefined;
   Biometrics: undefined;
+  'Add Option': undefined;
 };

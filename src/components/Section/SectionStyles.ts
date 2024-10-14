@@ -2,7 +2,8 @@ import {Dimensions, StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   sectionContainer: {
-    paddingHorizontal: 20,
+    flex: 1,
+    justifyContent: 'center',
   },
   sectionTitle: {
     fontSize: 24,

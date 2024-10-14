@@ -6,3 +6,4 @@ export {default as LogoutScreen} from 'src/screens/LogoutScreen/LogoutScreen';
 export {default as ContactsScreen} from 'src/screens/ContactsScreen/ContactsScreen';
 export {default as LoginScreen} from 'src/screens/LoginScreen/LoginScreen';
 export {default as BiometricScreen} from 'src/screens/BiometricScreen/BiometricScreen';
+export {default as OptionScreen} from 'src/screens/OptionScreen/OptionScreen';

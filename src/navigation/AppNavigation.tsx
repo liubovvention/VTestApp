@@ -9,9 +9,9 @@ import {useAuth} from 'context/AuthContext';
 import {useAppSelector} from 'hooks/useStore';
 import useBiometricAuth from 'hooks/useBiometricAuth';
 import {ScreenNames, StackParamList} from 'types/navigation';
-import {selectBiometrics, selectUser} from 'store/slices/auth/authSlice';
+import {selectBiometrics} from 'store/slices/auth/authSlice';
 import {Screen} from 'src/layout';
-import {BiometricScreen, DetailsScreen, HomeScreen, LoginScreen} from 'screens';
+import {BiometricScreen, DetailsScreen, HomeScreen, LoginScreen, OptionScreen} from 'screens';
 
 const Stack = createNativeStackNavigator<StackParamList>();
 
@@ -32,6 +32,7 @@ const AppNavigation = () => {
         nextAppState === 'active'
       ) {
         if (isAuthRequired) {
+          //TODO: remove auth = true
           const isAuth = true;
           //const isAuth = await authenticate();
           setIsLoggedIn(isAuth);
@@ -91,6 +92,10 @@ const AppNavigation = () => {
           <Stack.Screen
             name={ScreenNames.Details}
             component={DetailsScreen}
+          />
+          <Stack.Screen
+            name={ScreenNames.Option}
+            component={OptionScreen}
           />
         </>
       ) : (
